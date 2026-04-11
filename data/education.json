@@ -1,0 +1,20 @@
+{
+  "heading": ["Education", "and training."],
+  "items": [
+    {
+      "title": "Bachelor of Computer Science",
+      "institution": "University of Ruhuna",
+      "details": null
+    },
+    {
+      "title": "GCE Advanced Level Examination",
+      "institution": "Rahula College, Matara",
+      "details": "Mathematics — A · Physics — C · Chemistry — C"
+    },
+    {
+      "title": "Diploma in Photography",
+      "institution": "The National Photographic Art Society of Sri Lanka",
+      "details": null
+    }
+  ]
+}

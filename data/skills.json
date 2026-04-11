@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "number": "01",
+      "title": "Frontend",
+      "description": "Interfaces that prioritize clarity, typography, and restraint over decoration.",
+      "items": ["React", "Next.js", "Redux", "TypeScript", "Tailwind CSS"]
+    },
+    {
+      "number": "02",
+      "title": "Backend",
+      "description": "APIs and services designed for readable code and predictable behavior under load.",
+      "items": ["Node.js", "NestJS", "Java Spring Boot", "ASP.NET Core", "Laravel"]
+    },
+    {
+      "number": "03",
+      "title": "Databases & Cloud",
+      "description": "Relational-first data modeling and only as much infrastructure as the problem requires.",
+      "items": ["PostgreSQL", "MongoDB", "MySQL", "MS SQL", "Firebase", "AWS"]
+    },
+    {
+      "number": "04",
+      "title": "Game Dev & Tools",
+      "description": "Small interactive experiments and production game work across 2D engines.",
+      "items": ["Cocos Creator", "Unity", "Figma", "Postman", "Docker", "GitHub", "CI/CD"]
+    }
+  ]
+}

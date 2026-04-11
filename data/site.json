@@ -1,0 +1,33 @@
+{
+  "name": "DILSHAN.DEV",
+  "title": "Dilshan Wickramasinghe — Full Stack & Game Developer",
+  "shortName": "Dilshan Wickramasinghe",
+  "description": "Computer Science graduate with hands-on industry experience across full-stack web and game development. Strong in React, Next.js, Node.js, NestJS, Spring Boot, ASP.NET Core, and Cocos Creator.",
+  "url": "https://dilshan.dev",
+  "keywords": [
+    "portfolio",
+    "software engineer",
+    "full stack developer",
+    "game developer",
+    "react",
+    "nextjs",
+    "nestjs",
+    "cocos creator"
+  ],
+  "author": {
+    "name": "Dilshan Wickramasinghe",
+    "role": "Full Stack Developer & Game Developer",
+    "tagline": "Computer Science graduate. Fast learner. Problem solver. Adaptable.",
+    "email": "hello@dilshan.dev",
+    "location": "Sri Lanka"
+  },
+  "availability": {
+    "open": true,
+    "label": "Available for new projects"
+  },
+  "socials": [
+    { "label": "GitHub", "href": "https://github.com" },
+    { "label": "LinkedIn", "href": "https://linkedin.com" },
+    { "label": "Twitter", "href": "https://twitter.com" }
+  ]
+}

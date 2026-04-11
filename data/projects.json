@@ -1,0 +1,101 @@
+{
+  "heading": ["Selected", "work."],
+  "categories": [
+    { "value": "all", "label": "ALL" },
+    { "value": "web", "label": "WEB DEV" },
+    { "value": "game", "label": "GAME DEV" }
+  ],
+  "items": [
+    {
+      "id": "home-cinema",
+      "number": "01",
+      "title": "Home Cinema Streaming Platform",
+      "year": "2025",
+      "role": "Full-stack",
+      "category": "web",
+      "summary": "HLS streaming platform with authentication and Vimeo integration.",
+      "description": "Full-featured home cinema streaming platform with HLS video playback, user authentication, subscription gating, and Vimeo integration. Built around a clean playback surface with adaptive bitrate handling.",
+      "tags": ["React", "Node.js", "Firebase", "Vimeo", "HLS"],
+      "thumbnail": { "colorClass": "bg-parchment", "alt": "Home Cinema Streaming Platform" },
+      "links": []
+    },
+    {
+      "id": "gaming-platform",
+      "number": "02",
+      "title": "Gaming Platform",
+      "year": "2025",
+      "role": "Full-stack",
+      "category": "web",
+      "summary": "Modern gaming platform with a Next.js front-end and NestJS services.",
+      "description": "Prototype gaming platform combining a Next.js front-end with a NestJS backend. Game catalog, session handling, and a modular service architecture designed for adding new titles without ceremony.",
+      "tags": ["Next.js", "NestJS", "TypeScript"],
+      "thumbnail": { "colorClass": "bg-sand", "alt": "Gaming Platform" },
+      "links": []
+    },
+    {
+      "id": "chicken-road",
+      "number": "03",
+      "title": "Chicken Road Crash Game",
+      "year": "2025",
+      "role": "Game & services",
+      "category": "game",
+      "summary": "Crash-style game built in Cocos Creator with a real-time NestJS backend.",
+      "description": "Crash-style arcade game built in Cocos Creator with a real-time NestJS backend for multiplayer logic, server-authoritative game state, and deterministic outcomes.",
+      "tags": ["Cocos Creator", "NestJS", "WebSocket"],
+      "thumbnail": { "colorClass": "bg-gold_muted", "alt": "Chicken Road Crash Game" },
+      "links": []
+    },
+    {
+      "id": "treasure-hunt",
+      "number": "04",
+      "title": "Treasure Hunt Crash Game",
+      "year": "2025",
+      "role": "Game & services",
+      "category": "game",
+      "summary": "Treasure-themed crash game with animated gameplay and server-side state.",
+      "description": "Treasure-themed crash game with animated gameplay and server-side game state management. Session lifecycle, animations, and payout logic kept authoritative on the NestJS service.",
+      "tags": ["Cocos Creator", "NestJS", "WebSocket"],
+      "thumbnail": { "colorClass": "bg-brown", "alt": "Treasure Hunt Crash Game" },
+      "links": []
+    },
+    {
+      "id": "lottery-scratch",
+      "number": "05",
+      "title": "Lottery Scratch Game",
+      "year": "2024",
+      "role": "Game & services",
+      "category": "game",
+      "summary": "Interactive scratch card lottery with Cocos animations and server result handling.",
+      "description": "Interactive scratch card lottery game with tactile Cocos Creator animations and a NestJS result-handling service. Outcomes are generated and validated server-side.",
+      "tags": ["Cocos Creator", "NestJS"],
+      "thumbnail": { "colorClass": "bg-charcoal_card", "alt": "Lottery Scratch Game" },
+      "links": []
+    },
+    {
+      "id": "hls-player",
+      "number": "06",
+      "title": "HLS Video Player",
+      "year": "2024",
+      "role": "Front-end",
+      "category": "web",
+      "summary": "Custom HLS player in Next.js supporting M3U8 streams with adaptive bitrate.",
+      "description": "Custom HLS video player built in Next.js supporting M3U8 streams with adaptive bitrate playback, quality selection, and a stripped-back player chrome designed to stay out of the way.",
+      "tags": ["Next.js", "HLS.js", "TypeScript"],
+      "thumbnail": { "colorClass": "bg-parchment", "alt": "HLS Video Player" },
+      "links": []
+    },
+    {
+      "id": "threejs-globe",
+      "number": "07",
+      "title": "Three.js Interactive Globe",
+      "year": "2024",
+      "role": "Front-end",
+      "category": "web",
+      "summary": "Explorable 3D globe rendered entirely in the browser.",
+      "description": "Interactive 3D globe built with Three.js — explorable, animated, and fully rendered in the browser. Shader-driven atmosphere, point data overlays, and lightweight interaction model.",
+      "tags": ["Three.js", "WebGL", "TypeScript"],
+      "thumbnail": { "colorClass": "bg-sand", "alt": "Three.js Interactive Globe" },
+      "links": []
+    }
+  ]
+}
