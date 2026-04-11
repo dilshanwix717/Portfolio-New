@@ -7,23 +7,32 @@
       "period": "04/2025 — Present",
       "location": "Colombo, LK",
       "type": "Full-time",
-      "summary": "Full-stack web and game developer working on web games and gaming platforms. Responsible for service design, real-time gameplay logic, and the front-end surfaces that ship with each title.",
-      "tags": ["NestJS", "React", "Cocos Creator", "TypeScript"]
+      "summary": "Full-stack web and game developer on web games and gaming platforms. Responsible for service design, real-time gameplay logic, and the front-end surfaces that ship with each title.",
+      "tags": ["NestJS", "Cocos Creator", "React", "NextJS", "PostgreSQL"]
     },
     {
       "role": "Associate Software Engineer",
       "company": "CeylonX Corporation",
       "period": "12/2024 — 03/2025",
-      "location": "Remote",
+      "location": "Colombo, LK",
       "type": "Full-time",
       "summary": "Developed, deployed, and maintained production products as a full-stack developer. Worked directly with clients and teammates on scope, shipping, and long-tail maintenance.",
-      "tags": ["React", "Node.js", "MongoDB", "MySQL", "Firebase", "Stripe", "AWS", "CI/CD"]
+      "tags": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "MySQL",
+        "Firebase",
+        "Stripe",
+        "AWS",
+        "CI/CD"
+      ]
     },
     {
       "role": "Intern Software Engineer",
       "company": "CeylonX Corporation",
       "period": "06/2024 — 12/2024",
-      "location": "Remote",
+      "location": "Colombo, LK",
       "type": "Internship",
       "summary": "Built products as an intern full-stack developer — authored features end-to-end, from the database up to the interface.",
       "tags": ["React", "Node.js", "MongoDB", "MySQL", "Firebase", "PayHere"]

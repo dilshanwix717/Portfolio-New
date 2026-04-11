@@ -17,6 +17,7 @@ export type ContactForm = {
   statusSubmitting: string;
   statusSent: string;
   statusError: string;
+  statusFailed: string;
 };
 
 export type ContactContent = {

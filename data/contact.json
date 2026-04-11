@@ -14,6 +14,7 @@
     "statusIdle": "Replies within a day or two.",
     "statusSubmitting": "Sending…",
     "statusSent": "Message sent — thank you.",
-    "statusError": "Please fill in every field."
+    "statusError": "Please fill in every field.",
+    "statusFailed": "Something went wrong — try emailing directly."
   }
 }

@@ -45,7 +45,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b bg-background transition-colors duration-base ease-out-soft",
+        "sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm transition-colors duration-base ease-out-soft",
         scrolled ? "border-border" : "border-transparent",
       )}
     >

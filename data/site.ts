@@ -17,6 +17,7 @@ export type SiteConfig = {
     role: string;
     tagline: string;
     email: string;
+    whatsapp: string;
     location: string;
   };
   availability: {

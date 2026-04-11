@@ -3,16 +3,29 @@
   "heading": "Leadership & interests",
   "items": [
     {
-      "label": "Football",
-      "detail": "Captain of the Science Faculty Football Team."
+      "label": "On the pitch",
+      "roles": [
+        "Captain — Science Faculty Football Team",
+        "University Football Team · SLUG XIV 2023"
+      ],
+      "tags": ["Football", "Cricket", "Chess", "Leader", "Team Player"]
     },
     {
-      "label": "Team Sports",
-      "detail": "University Football Team — SLUG XIV, 2023."
+      "label": "Behind the lens",
+      "roles": [
+        "Member — National Photographic Art Society of Sri Lanka",
+        "Member — Infocuor Photography Society, University of Ruhuna"
+      ],
+      "tags": ["Photography", "Cinematography", "Movies"]
     },
     {
-      "label": "Photography",
-      "detail": "Diploma in Photography and active society member."
+      "label": "Community & service",
+      "roles": [
+        "Senior Editor — Science Faculty Sports Club, 2023-2024",
+        "Member — Ruhuna University LEO Club",
+        "Member — Computer Science Students Society, University of Ruhuna"
+      ],
+      "tags": ["Leader", "Designer", "Volunteer", "Community builder"]
     }
   ]
 }

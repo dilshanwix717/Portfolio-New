@@ -1,5 +1,5 @@
 {
-  "heading": ["Selected", "work."],
+  "heading": ["Projects."],
   "categories": [
     { "value": "all", "label": "ALL" },
     { "value": "web", "label": "WEB DEV" },
@@ -16,7 +16,10 @@
       "summary": "HLS streaming platform with authentication and Vimeo integration.",
       "description": "Full-featured home cinema streaming platform with HLS video playback, user authentication, subscription gating, and Vimeo integration. Built around a clean playback surface with adaptive bitrate handling.",
       "tags": ["React", "Node.js", "Firebase", "Vimeo", "HLS"],
-      "thumbnail": { "colorClass": "bg-parchment", "alt": "Home Cinema Streaming Platform" },
+      "thumbnail": {
+        "colorClass": "bg-parchment",
+        "alt": "Home Cinema Streaming Platform"
+      },
       "links": []
     },
     {
@@ -42,7 +45,10 @@
       "summary": "Crash-style game built in Cocos Creator with a real-time NestJS backend.",
       "description": "Crash-style arcade game built in Cocos Creator with a real-time NestJS backend for multiplayer logic, server-authoritative game state, and deterministic outcomes.",
       "tags": ["Cocos Creator", "NestJS", "WebSocket"],
-      "thumbnail": { "colorClass": "bg-gold_muted", "alt": "Chicken Road Crash Game" },
+      "thumbnail": {
+        "colorClass": "bg-gold_muted",
+        "alt": "Chicken Road Crash Game"
+      },
       "links": []
     },
     {
@@ -55,7 +61,10 @@
       "summary": "Treasure-themed crash game with animated gameplay and server-side state.",
       "description": "Treasure-themed crash game with animated gameplay and server-side game state management. Session lifecycle, animations, and payout logic kept authoritative on the NestJS service.",
       "tags": ["Cocos Creator", "NestJS", "WebSocket"],
-      "thumbnail": { "colorClass": "bg-brown", "alt": "Treasure Hunt Crash Game" },
+      "thumbnail": {
+        "colorClass": "bg-brown",
+        "alt": "Treasure Hunt Crash Game"
+      },
       "links": []
     },
     {
@@ -68,7 +77,10 @@
       "summary": "Interactive scratch card lottery with Cocos animations and server result handling.",
       "description": "Interactive scratch card lottery game with tactile Cocos Creator animations and a NestJS result-handling service. Outcomes are generated and validated server-side.",
       "tags": ["Cocos Creator", "NestJS"],
-      "thumbnail": { "colorClass": "bg-charcoal_card", "alt": "Lottery Scratch Game" },
+      "thumbnail": {
+        "colorClass": "bg-charcoal_card",
+        "alt": "Lottery Scratch Game"
+      },
       "links": []
     },
     {
@@ -94,7 +106,10 @@
       "summary": "Explorable 3D globe rendered entirely in the browser.",
       "description": "Interactive 3D globe built with Three.js — explorable, animated, and fully rendered in the browser. Shader-driven atmosphere, point data overlays, and lightweight interaction model.",
       "tags": ["Three.js", "WebGL", "TypeScript"],
-      "thumbnail": { "colorClass": "bg-sand", "alt": "Three.js Interactive Globe" },
+      "thumbnail": {
+        "colorClass": "bg-sand",
+        "alt": "Three.js Interactive Globe"
+      },
       "links": []
     }
   ]
