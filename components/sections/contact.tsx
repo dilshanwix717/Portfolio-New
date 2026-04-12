@@ -102,7 +102,7 @@ export function Contact() {
             </p>
 
             <div className="space-y-4 pt-4">
-              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 {contactContent.directLabel}
               </p>
               {/* Email */}
@@ -122,7 +122,7 @@ export function Contact() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-hover ease-out-soft hover:border-accent hover:text-accent"
+                  className="inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-hover ease-out-soft hover:border-accent hover:text-accent"
                 >
                   <WhatsAppIcon />
                   WhatsApp
@@ -131,7 +131,7 @@ export function Contact() {
             </div>
 
             <div className="space-y-3 pt-4">
-              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 {contactContent.elsewhereLabel}
               </p>
               <ul
@@ -207,7 +207,7 @@ export function Contact() {
                 role="status"
                 aria-live="polite"
                 className={cn(
-                  "font-mono text-[11px] uppercase tracking-[0.25em]",
+                  "font-mono text-xs uppercase tracking-[0.25em]",
                   status === "error" || status === "failed"
                     ? "text-foreground"
                     : "text-muted-foreground",
@@ -245,7 +245,7 @@ function Field({ label, htmlFor, index, children }: FieldProps) {
     <div className="flex flex-col gap-3">
       <label
         htmlFor={htmlFor}
-        className="flex items-baseline gap-4 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
+        className="flex items-baseline gap-4 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground"
       >
         <span aria-hidden="true">{index}</span>
         <span>{label}</span>

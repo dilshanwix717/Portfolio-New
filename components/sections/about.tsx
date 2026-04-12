@@ -17,19 +17,19 @@ export function About() {
               </p>
               <div aria-hidden="true" className="h-px w-16 bg-accent" />
             </div>
-            <blockquote className="font-serif text-[clamp(1.75rem,4vw,2.625rem)] font-medium italic leading-[1.15] text-foreground">
-              {aboutContent.pullQuote.map((line, index) => (
-                <span
-                  key={line}
-                  className={
-                    index === aboutContent.pullQuote.length - 1
-                      ? "block text-accent"
-                      : "block"
-                  }
-                >
-                  &ldquo;{line}&rdquo;
-                </span>
-              ))}
+            <blockquote className="font-serif text-[clamp(1.75rem,4vw,2.625rem)] font-medium italic leading-[1.15] text-foreground [quotes:none]">
+              {aboutContent.pullQuote.map((line, index) => {
+                const isLast = index === aboutContent.pullQuote.length - 1;
+                return (
+                  <span
+                    key={line}
+                    className={isLast ? "block text-accent" : "block"}
+                  >
+                    {index === 0 ? `\u201C${line}` : line}
+                    {isLast ? "\u201D" : ""}
+                  </span>
+                );
+              })}
             </blockquote>
           </div>
         </SlideIn>
@@ -51,7 +51,7 @@ export function About() {
               {aboutContent.tags.map((tag) => (
                 <li
                   key={tag}
-                  className="border border-border px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+                  className="border border-border px-3 py-1 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
                 >
                   {tag}
                 </li>

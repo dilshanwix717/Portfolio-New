@@ -13,7 +13,7 @@ export function Education() {
         <div className="md:col-span-4">
           <div className="space-y-4 md:sticky md:top-24">
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              03 / Education
+              04 / Education
             </p>
             <h2 id="education-heading">
               {educationContent.heading.map((line) => (
@@ -37,7 +37,7 @@ export function Education() {
                     <h3 className="text-2xl font-medium leading-tight">
                       {item.title}
                     </h3>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       {item.institution}
                     </p>
                     {item.details ? (
@@ -63,7 +63,7 @@ export function Education() {
                       <h3 className="text-lg font-medium leading-snug">
                         {item.title}
                       </h3>
-                      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                      <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                         {item.issuer}
                       </p>
                     </article>

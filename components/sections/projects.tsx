@@ -42,7 +42,7 @@ export function Projects() {
       <header className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div className="space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            04 / Work
+            02 / Work
           </p>
           <h2 id="projects-heading">
             {projectsContent.heading.map((line) => (
@@ -71,7 +71,7 @@ export function Projects() {
 
       <Dialog
         open={selected !== null}
-        onOpenChange={(open) => {
+        onOpenChange={(open: boolean) => {
           if (!open) setSelectedId(null);
         }}
       >
@@ -104,7 +104,9 @@ function ProjectFilterToggle({ value, onChange }: ProjectFilterToggleProps) {
             onClick={() => onChange(category.value)}
             className={cn(
               "group relative inline-flex py-1 transition-colors duration-hover ease-out-soft focus-visible:outline-none",
-              active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+              active
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             {category.label}
@@ -123,15 +125,36 @@ function ProjectFilterToggle({ value, onChange }: ProjectFilterToggleProps) {
 }
 
 function ProjectDialogContent({ project }: { project: Project }) {
+  const [notice, setNotice] = React.useState<string | null>(null);
+
+  const handleUnavailableClick = React.useCallback((label: string) => {
+    const message = label.toLowerCase().includes("github")
+      ? "This project is part of a private repository and isn\u2019t publicly available yet."
+      : "This project isn\u2019t hosted publicly at the moment \u2014 stay tuned!";
+    setNotice(message);
+    const id = window.setTimeout(() => setNotice(null), 3000);
+    return () => window.clearTimeout(id);
+  }, []);
+
   return (
     <DialogContent>
       <DialogHeader>
-        <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
           {project.number} / {project.year} / {project.role}
         </p>
         <DialogTitle className="font-serif text-3xl font-medium">
           {project.title}
         </DialogTitle>
+        <ul
+          role="list"
+          className="flex flex-wrap pt-2 pb-3 gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
+        >
+          {project.tags.map((tag) => (
+            <li key={tag} className="border border-border px-2.5 py-1">
+              {tag}
+            </li>
+          ))}
+        </ul>
         <DialogDescription className="text-base leading-relaxed">
           {project.summary}
         </DialogDescription>
@@ -141,35 +164,46 @@ function ProjectDialogContent({ project }: { project: Project }) {
         <p className="text-base leading-relaxed text-muted-foreground">
           {project.description}
         </p>
-
-        <ul
-          role="list"
-          className="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
-        >
-          {project.tags.map((tag) => (
-            <li key={tag} className="border border-border px-2.5 py-1">
-              {tag}
-            </li>
-          ))}
-        </ul>
-
         {project.links.length > 0 ? (
-          <ul role="list" className="flex flex-wrap gap-6 pt-2">
-            {project.links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="group relative inline-flex font-mono text-xs uppercase tracking-[0.2em] text-foreground"
-                >
-                  {link.label}
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-accent transition-[width] duration-hover ease-out-soft group-hover:w-full"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="space-y-1 pt-2">
+            <div className="flex flex-wrap gap-3">
+              {project.links.map((link) =>
+                link.href ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center border border-accent/40 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-accent transition-all duration-hover ease-out-soft hover:border-accent hover:bg-accent hover:text-background"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <button
+                    key={link.label}
+                    type="button"
+                    onClick={() => handleUnavailableClick(link.label)}
+                    className="inline-flex items-center border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-all duration-hover ease-out-soft hover:border-foreground/30 hover:text-foreground"
+                  >
+                    {link.label}
+                  </button>
+                ),
+              )}
+            </div>
+
+            <p
+              role="status"
+              aria-live="polite"
+              className={cn(
+                "font-mono text-xs tracking-wide text-muted-foreground transition-all duration-base ease-out-soft",
+                notice
+                  ? "translate-y-0 opacity-100"
+                  : "pointer-events-none translate-y-1 opacity-0",
+              )}
+            >
+              {notice ?? "\u00A0"}
+            </p>
+          </div>
         ) : null}
       </div>
     </DialogContent>

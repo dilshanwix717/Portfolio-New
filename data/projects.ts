@@ -11,7 +11,7 @@ export type ProjectThumbnail = {
 
 export type ProjectLink = {
   label: string;
-  href: string;
+  href: string | null;
 };
 
 export type Project = {

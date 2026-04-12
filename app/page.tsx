@@ -18,9 +18,9 @@ export default function HomePage() {
         <Hero />
         <Ticker />
         <About />
+        <Projects />
         <Skills />
         <Education />
-        <Projects />
         <Experience />
         <Interests />
         <Contact />

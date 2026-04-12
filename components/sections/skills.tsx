@@ -11,7 +11,7 @@ export function Skills() {
     >
       <header className="mb-16 flex flex-col items-start justify-between gap-8 md:flex-row md:items-baseline">
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          02 / Skills
+          03 / Skills
         </p>
         <h2 id="skills-heading" className="md:text-right">
           Disciplines

@@ -6,12 +6,12 @@ export function Footer() {
   return (
     <footer className="dark border-t border-border bg-background text-foreground">
       <div className="container flex flex-col items-start justify-between gap-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="font-mono text-xs uppercase tracking-[0.2em]">
           © {year} {siteConfig.author.name}
         </p>
         <ul
           role="list"
-          className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.2em]"
+          className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs uppercase tracking-[0.2em]"
         >
           {siteConfig.socials.map((social, index) => (
             <li key={social.label} className="flex items-center gap-4">

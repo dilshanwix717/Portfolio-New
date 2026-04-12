@@ -29,7 +29,7 @@ function TickerTrack({ "aria-hidden": ariaHidden }: TickerTrackProps) {
       {tickerItems.map((item) => (
         <li
           key={item}
-          className="flex items-center font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground"
+          className="flex items-center font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground"
         >
           <span className="whitespace-nowrap px-8">{item}</span>
           <span aria-hidden="true" className="text-accent">

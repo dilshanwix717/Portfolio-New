@@ -15,7 +15,7 @@ export function Hero() {
     >
       <div className="space-y-8 md:col-span-7">
         {siteConfig.availability.open ? (
-          <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-accent">
+          <p className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-accent">
             <span
               aria-hidden="true"
               className="inline-block h-1.5 w-1.5 rounded-full bg-detail"

@@ -41,7 +41,7 @@ export function Experience() {
                           — {entry.company}
                         </span>
                       </h3>
-                      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                      <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                         {entry.period}
                         <span aria-hidden="true"> · </span>
                         {entry.location}
@@ -56,7 +56,7 @@ export function Experience() {
 
                     <ul
                       role="list"
-                      className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+                      className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
                     >
                       {entry.tags.map((tag, tagIndex) => (
                         <li key={tag} className="flex items-center gap-3">

@@ -18,7 +18,7 @@ export function SkillGroupCard({ group }: SkillGroupCardProps) {
       </p>
       <ul
         role="list"
-        className="mt-auto flex flex-wrap gap-x-3 gap-y-2 pt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+        className="mt-auto flex flex-wrap gap-x-3 gap-y-2 pt-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
       >
         {group.items.map((item, index) => (
           <li key={item} className="flex items-center gap-3">

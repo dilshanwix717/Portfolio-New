@@ -20,7 +20,13 @@
         "colorClass": "bg-parchment",
         "alt": "Home Cinema Streaming Platform"
       },
-      "links": []
+      "links": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/dilshanwix717/your-repo"
+        },
+        { "label": "Live Demo", "href": "https://your-project.vercel.app" }
+      ]
     },
     {
       "id": "gaming-platform",
@@ -33,7 +39,10 @@
       "description": "Prototype gaming platform combining a Next.js front-end with a NestJS backend. Game catalog, session handling, and a modular service architecture designed for adding new titles without ceremony.",
       "tags": ["Next.js", "NestJS", "TypeScript"],
       "thumbnail": { "colorClass": "bg-sand", "alt": "Gaming Platform" },
-      "links": []
+      "links": [
+        { "label": "GitHub", "href": null },
+        { "label": "Live Demo", "href": null }
+      ]
     },
     {
       "id": "chicken-road",
@@ -49,7 +58,10 @@
         "colorClass": "bg-gold_muted",
         "alt": "Chicken Road Crash Game"
       },
-      "links": []
+      "links": [
+        { "label": "GitHub", "href": null },
+        { "label": "Live Demo", "href": null }
+      ]
     },
     {
       "id": "treasure-hunt",
@@ -65,7 +77,10 @@
         "colorClass": "bg-brown",
         "alt": "Treasure Hunt Crash Game"
       },
-      "links": []
+      "links": [
+        { "label": "GitHub", "href": null },
+        { "label": "Live Demo", "href": null }
+      ]
     },
     {
       "id": "lottery-scratch",
@@ -81,7 +96,10 @@
         "colorClass": "bg-charcoal_card",
         "alt": "Lottery Scratch Game"
       },
-      "links": []
+      "links": [
+        { "label": "GitHub", "href": null },
+        { "label": "Live Demo", "href": null }
+      ]
     },
     {
       "id": "hls-player",
@@ -94,7 +112,10 @@
       "description": "Custom HLS video player built in Next.js supporting M3U8 streams with adaptive bitrate playback, quality selection, and a stripped-back player chrome designed to stay out of the way.",
       "tags": ["Next.js", "HLS.js", "TypeScript"],
       "thumbnail": { "colorClass": "bg-parchment", "alt": "HLS Video Player" },
-      "links": []
+      "links": [
+        { "label": "GitHub", "href": null },
+        { "label": "Live Demo", "href": null }
+      ]
     },
     {
       "id": "threejs-globe",
@@ -110,7 +131,10 @@
         "colorClass": "bg-sand",
         "alt": "Three.js Interactive Globe"
       },
-      "links": []
+      "links": [
+        { "label": "GitHub", "href": null },
+        { "label": "Live Demo", "href": null }
+      ]
     }
   ]
 }
