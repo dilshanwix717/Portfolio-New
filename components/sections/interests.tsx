@@ -6,9 +6,9 @@ export function Interests() {
     <section
       id="interests"
       aria-labelledby="interests-heading"
-      className="bg-muted"
+      className="py-24 md:py-32"
     >
-      <div className="container py-24 md:py-32">
+      <div className="container">
         <header className="mb-16 space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
             {interestsContent.label}
@@ -16,9 +16,12 @@ export function Interests() {
           <h2 id="interests-heading">{interestsContent.heading}</h2>
         </header>
 
-        <ul role="list" className="grid gap-px bg-border md:grid-cols-3">
+        <ul role="list" className="grid gap-6 md:grid-cols-3">
           {interestsContent.items.map((item, index) => (
-            <li key={item.label} className="bg-muted p-8 md:p-10">
+            <li
+              key={item.label}
+              className="border border-border bg-background p-8 transition-colors duration-hover ease-out-soft hover:border-accent/40 md:p-10"
+            >
               <SlideIn from="up" index={index}>
                 <article className="flex h-full flex-col gap-6">
                   {/* Header */}
@@ -29,7 +32,7 @@ export function Interests() {
                     </h3>
                   </div>
 
-                  {/* Identity tags — prominent */}
+                  {/* Identity tags */}
                   <ul
                     role="list"
                     className="flex flex-wrap gap-2"
@@ -38,14 +41,14 @@ export function Interests() {
                     {item.tags.map((tag) => (
                       <li
                         key={tag}
-                        className="border border-accent px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-accent"
+                        className="border border-accent/40 px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-accent"
                       >
                         {tag}
                       </li>
                     ))}
                   </ul>
 
-                  {/* Roles — clear and readable */}
+                  {/* Roles */}
                   <ul
                     role="list"
                     className="mt-auto space-y-3 border-t border-border pt-6"

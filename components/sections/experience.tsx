@@ -6,8 +6,9 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="container py-24 md:py-32"
+      className="bg-muted"
     >
+      <div className="container py-24 md:py-32">
       <div className="grid gap-16 md:grid-cols-12">
         <div className="md:col-span-4">
           <div className="space-y-4 md:sticky md:top-24">
@@ -73,6 +74,7 @@ export function Experience() {
             ))}
           </ul>
         </div>
+      </div>
       </div>
     </section>
   );

@@ -19,13 +19,13 @@ export type Project = {
   number: string;
   title: string;
   year: string;
-  role: string;
   category: ProjectCategory;
   summary: string;
   description: string;
   tags: readonly string[];
   thumbnail: ProjectThumbnail;
   links: readonly ProjectLink[];
+  repos?: readonly ProjectLink[];
 };
 
 export type ProjectCategoryOption = {

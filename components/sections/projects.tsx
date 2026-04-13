@@ -37,8 +37,9 @@ export function Projects() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="container py-24 md:py-32"
+      className="bg-muted"
     >
+      <div className="container py-24 md:py-32">
       <header className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div className="space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
@@ -77,6 +78,7 @@ export function Projects() {
       >
         {selected ? <ProjectDialogContent project={selected} /> : null}
       </Dialog>
+      </div>
     </section>
   );
 }
@@ -140,7 +142,7 @@ function ProjectDialogContent({ project }: { project: Project }) {
     <DialogContent>
       <DialogHeader>
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          {project.number} / {project.year} / {project.role}
+          {project.number} / {project.year}
         </p>
         <DialogTitle className="font-serif text-3xl font-medium">
           {project.title}
@@ -167,7 +169,15 @@ function ProjectDialogContent({ project }: { project: Project }) {
         {project.links.length > 0 ? (
           <div className="space-y-1 pt-2">
             <div className="flex flex-wrap gap-3">
-              {project.links.map((link) =>
+              {(project.repos && project.repos.length > 0
+                ? [
+                    ...project.repos,
+                    ...project.links.filter(
+                      (l) => !l.label.toLowerCase().includes("github"),
+                    ),
+                  ]
+                : project.links
+              ).map((link) =>
                 link.href ? (
                   <a
                     key={link.label}
