@@ -36,9 +36,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.author.name }],
   creator: siteConfig.author.name,
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     type: "website",
@@ -82,11 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        fontSans.variable,
-        fontSerif.variable,
-        fontMono.variable,
-      )}
+      className={cn(fontSans.variable, fontSerif.variable, fontMono.variable)}
       suppressHydrationWarning
     >
       <body className="grain">

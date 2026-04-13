@@ -9,13 +9,11 @@ export function LoadingScreen() {
   );
 
   React.useEffect(() => {
-    // Show logo briefly, then start exit
-    const exitTimer = setTimeout(() => setPhase("exiting"), 1200);
-    // Remove from DOM after exit transition completes
-    const doneTimer = setTimeout(() => setPhase("done"), 1900);
+    const exitTimer = window.setTimeout(() => setPhase("exiting"), 1200);
+    const doneTimer = window.setTimeout(() => setPhase("done"), 1900);
     return () => {
-      clearTimeout(exitTimer);
-      clearTimeout(doneTimer);
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(doneTimer);
     };
   }, []);
 
@@ -25,7 +23,7 @@ export function LoadingScreen() {
     <div
       aria-hidden="true"
       className={cn(
-        "fixed inset-0 z-[9999] flex items-center justify-center bg-background transition-opacity duration-700 ease-out-soft",
+        "pointer-events-none fixed inset-0 z-[9999] flex items-center justify-center bg-background transition-opacity duration-700 ease-out-soft",
         phase === "exiting" && "opacity-0",
       )}
     >
@@ -37,11 +35,9 @@ export function LoadingScreen() {
             : "-translate-y-4 opacity-0",
         )}
       >
-        {/* Logo mark */}
         <span className="font-serif text-5xl font-medium tracking-[-0.04em] text-accent animate-logo-in">
           DW
         </span>
-        {/* Accent line */}
         <span className="h-px w-12 bg-accent/60 animate-line-expand" />
       </div>
     </div>

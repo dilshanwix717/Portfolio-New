@@ -39,6 +39,22 @@ export function Sidebar() {
     };
   }, [sectionIds]);
 
+  const activeIndex = sectionIds.indexOf(activeId);
+  const linkRefs = React.useRef<(HTMLAnchorElement | null)[]>([]);
+  const [dotTop, setDotTop] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    if (activeIndex < 0) return;
+    const el = linkRefs.current[activeIndex];
+    if (!el) return;
+    const parent = el.closest("ul");
+    if (!parent) return;
+    const parentRect = parent.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    // Center the 6px dot (h-1.5) within the link element
+    setDotTop(elRect.top - parentRect.top + elRect.height / 2 - 3);
+  }, [activeIndex]);
+
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[480px] lg:shrink-0 lg:flex-col lg:justify-between lg:py-24">
       {/* Top — identity */}
@@ -58,19 +74,30 @@ export function Sidebar() {
         </Reveal>
       </div>
 
-      {/* Middle — navigation */}
+      {/* Middle — navigation (desktop) */}
       <Reveal delay={600}>
         <nav aria-label="Primary" className="mt-16 hidden lg:block">
-          <ul className="space-y-1">
-            {navItems.map((item) => {
+          <ul className="relative space-y-1">
+            {/* Sliding dot indicator — position measured from real DOM */}
+            <span
+              aria-hidden="true"
+              className="absolute left-0 h-1.5 w-1.5 rounded-full bg-accent transition-all duration-300 ease-out-soft"
+              style={{
+                top: dotTop !== null ? `${dotTop}px` : "-9999px",
+                opacity: dotTop !== null ? 1 : 0,
+              }}
+            />
+
+            {navItems.map((item, index) => {
               const id = item.href.replace("#", "");
               const active = activeId === id;
               return (
                 <li key={item.href}>
                   <Link
+                    ref={(el) => { linkRefs.current[index] = el; }}
                     href={item.href}
                     className={cn(
-                      "group flex items-center gap-4 py-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-hover ease-out-soft",
+                      "group flex items-center py-2 pl-5 font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-200 ease-out-soft",
                       active
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground",
@@ -79,11 +106,26 @@ export function Sidebar() {
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "inline-block h-px bg-foreground transition-[width] duration-hover ease-out-soft",
-                        active ? "w-16" : "w-8 group-hover:w-16",
+                        "mr-2 font-mono text-sm font-bold text-accent/70 transition-all duration-200 ease-out-soft",
+                        active
+                          ? "w-auto opacity-100"
+                          : "w-0 overflow-hidden opacity-0 group-hover:w-auto group-hover:opacity-50",
                       )}
-                    />
-                    {item.label}
+                    >
+                      [
+                    </span>
+                    <span>{item.label}</span>
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "ml-2 font-mono text-sm font-bold text-accent/70 transition-all duration-200 ease-out-soft",
+                        active
+                          ? "w-auto opacity-100"
+                          : "w-0 overflow-hidden opacity-0 group-hover:w-auto group-hover:opacity-50",
+                      )}
+                    >
+                      ]
+                    </span>
                   </Link>
                 </li>
               );
@@ -115,7 +157,7 @@ export function Sidebar() {
         </ul>
       </Reveal>
 
-      {/* Mobile nav — compact horizontal links, hidden on desktop */}
+      {/* Mobile nav */}
       <Reveal delay={600}>
         <nav aria-label="Primary (mobile)" className="mt-8 lg:hidden">
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
@@ -133,7 +175,7 @@ export function Sidebar() {
                         : "text-muted-foreground hover:text-foreground",
                     )}
                   >
-                    {item.label}
+                    {active ? `[ ${item.label} ]` : item.label}
                   </Link>
                 </li>
               );
@@ -172,7 +214,6 @@ function SocialIcon({ name }: { name: string }) {
     );
   }
 
-  // Fallback — text label
   return <span className="font-mono text-xs uppercase tracking-[0.2em]">{name}</span>;
 }
 

@@ -1,7 +1,13 @@
+"use client";
+
+import * as React from "react";
 import { interestsContent } from "@/data/interests";
 import { Reveal } from "@/components/motion/reveal";
+import { cn } from "@/lib/utils";
 
 export function Interests() {
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+
   return (
     <section id="interests" aria-labelledby="interests-heading" className="py-16 md:py-24">
       <Reveal>
@@ -13,56 +19,100 @@ export function Interests() {
         </h2>
       </Reveal>
 
-      <ul role="list" className="mt-12 grid gap-6 md:grid-cols-3">
+      <div role="list" className="mt-10 divide-y divide-border">
         {interestsContent.items.map((item, i) => (
-          <Reveal
+          <InterestRow
             key={item.label}
-            as="li"
-            delay={i * 120}
-            className="group flex flex-col gap-5 rounded border border-border bg-background p-6 transition-colors duration-hover ease-out-soft hover:border-accent/40"
+            item={item}
+            index={i}
+            isActive={activeIndex === i}
+            isAnyActive={activeIndex !== null}
+            onEnter={() => setActiveIndex(i)}
+            onLeave={() => setActiveIndex(null)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function InterestRow({
+  item,
+  index,
+  isActive,
+  isAnyActive,
+  onEnter,
+  onLeave,
+}: {
+  item: { label: string; tags: readonly string[]; roles: readonly string[] };
+  index: number;
+  isActive: boolean;
+  isAnyActive: boolean;
+  onEnter: () => void;
+  onLeave: () => void;
+}) {
+  return (
+    <Reveal delay={index * 120}>
+      <div
+        role="listitem"
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+        className={cn(
+          "cursor-default py-6 transition-opacity duration-300 ease-out-soft",
+          isAnyActive && !isActive && "opacity-40",
+        )}
+      >
+        {/* Top row — number + title inline */}
+        <div className="flex items-baseline gap-4">
+          <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground/50">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3
+            className={cn(
+              "font-serif text-2xl font-medium leading-tight transition-colors duration-200 ease-out-soft md:text-3xl",
+              isActive ? "text-accent" : "text-foreground",
+            )}
           >
-            <div className="flex flex-col gap-2">
-              <span aria-hidden="true" className="h-px w-10 bg-accent" />
-              <h3 className="font-serif text-xl font-medium leading-tight">
-                {item.label}
-              </h3>
-            </div>
+            {item.label}
+          </h3>
+        </div>
 
-            <ul
-              role="list"
-              className="flex flex-wrap gap-2"
-              aria-label="Identities"
-            >
-              {item.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="bg-accent/10 px-2.5 py-1 font-mono text-xs uppercase tracking-[0.15em] text-accent"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-
-            <ul
-              role="list"
-              className="mt-auto space-y-2.5 border-t border-border pt-4"
-            >
+        {/* Expandable content — roles + tags */}
+        <div
+          className={cn(
+            "overflow-hidden transition-all duration-300 ease-out-soft",
+            isActive ? "max-h-[200px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0",
+          )}
+        >
+          <div className="pl-10 md:pl-12 space-y-3">
+            <ul role="list" className="space-y-1.5">
               {item.roles.map((role) => (
                 <li
                   key={role}
-                  className="flex items-start gap-2.5 text-sm leading-snug text-muted-foreground"
+                  className="flex items-baseline gap-2.5 text-sm leading-relaxed text-muted-foreground"
                 >
                   <span
                     aria-hidden="true"
-                    className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent"
+                    className="relative top-[-1px] h-1 w-1 shrink-0 rounded-full bg-accent"
                   />
                   {role}
                 </li>
               ))}
             </ul>
-          </Reveal>
-        ))}
-      </ul>
-    </section>
+
+            <div className="flex flex-wrap gap-1.5">
+              {item.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-accent/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-accent"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
   );
 }
