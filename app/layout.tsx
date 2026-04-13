@@ -4,6 +4,7 @@ import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { LoadingScreen } from "@/components/motion/loading-screen";
 import { CursorGlow } from "@/components/motion/cursor-glow";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const fontSans = Inter({
@@ -84,9 +85,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="grain">
-        <LoadingScreen />
-        <CursorGlow />
-        {children}
+        <ThemeProvider>
+          <LoadingScreen />
+          <CursorGlow />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
