@@ -20,16 +20,16 @@ const config: Config = {
     extend: {
       colors: {
         // Raw palette — static hex, accessible by name
-        cream: "#FAF6EE",
-        parchment: "#F0E8D4",
+        cream: "#ECE3D0",
+        parchment: "#DDD2BA",
         gold: "#D4A017",
         ink: "#1A1710",
         brown: "#5C4F2A",
-        sand: "#C8B88A",
+        sand: "#B5A882",
         violet: "#7C3AED",
-        charcoal: "#0E0C08",
-        charcoal_card: "#181410",
-        charcoal_border: "#2A2210",
+        charcoal: "#231D14",
+        charcoal_card: "#2E2720",
+        charcoal_border: "#413520",
         gold_pale: "#F5DFA0",
         gold_muted: "#4A3C10",
 
@@ -98,6 +98,18 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        "logo-in": {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "line-expand": {
+          "0%": { width: "0px", opacity: "0" },
+          "100%": { width: "3rem", opacity: "0.6" },
+        },
+        "letter-in": {
+          "0%": { opacity: "0", transform: "translateY(0.3em)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "fade-in": "fade-in 200ms cubic-bezier(0.22, 1, 0.36, 1)",
@@ -106,6 +118,9 @@ const config: Config = {
           "reveal-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both",
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
         marquee: "marquee 30s linear infinite",
+        "logo-in": "logo-in 800ms cubic-bezier(0.22, 1, 0.36, 1) both",
+        "line-expand": "line-expand 600ms cubic-bezier(0.22, 1, 0.36, 1) 400ms both",
+        "letter-in": "letter-in 500ms cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },
   },

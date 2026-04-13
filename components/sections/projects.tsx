@@ -13,7 +13,6 @@ import { ProjectRow } from "@/components/sections/project-row";
 import {
   projectCategories,
   projects,
-  projectsContent,
   type Project,
   type ProjectFilter,
 } from "@/data/projects";
@@ -34,28 +33,10 @@ export function Projects() {
   }, [selectedId]);
 
   return (
-    <section
-      id="projects"
-      aria-labelledby="projects-heading"
-      className="bg-muted"
-    >
-      <div className="container py-24 md:py-32">
-      <header className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div className="space-y-4">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            02 / Work
-          </p>
-          <h2 id="projects-heading">
-            {projectsContent.heading.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
-            ))}
-          </h2>
-        </div>
-
+    <div className="py-12">
+      <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <ProjectFilterToggle value={filter} onChange={setFilter} />
-      </header>
+      </div>
 
       <ul role="list" className="border-b border-border">
         <AnimatePresence duration={300}>
@@ -78,8 +59,7 @@ export function Projects() {
       >
         {selected ? <ProjectDialogContent project={selected} /> : null}
       </Dialog>
-      </div>
-    </section>
+    </div>
   );
 }
 

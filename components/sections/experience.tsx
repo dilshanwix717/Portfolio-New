@@ -1,81 +1,77 @@
-import { SlideIn } from "@/components/motion/slide-in";
+import Link from "next/link";
 import { experienceContent } from "@/data/experience";
+import { Reveal } from "@/components/motion/reveal";
 
 export function Experience() {
   return (
-    <section
-      id="experience"
-      aria-labelledby="experience-heading"
-      className="bg-muted"
-    >
-      <div className="container py-24 md:py-32">
-      <div className="grid gap-16 md:grid-cols-12">
-        <div className="md:col-span-4">
-          <div className="space-y-4 md:sticky md:top-24">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              05 / Experience
-            </p>
-            <h2 id="experience-heading">
-              {experienceContent.heading.map((line) => (
-                <span key={line} className="block">
-                  {line}
+    <section id="experience" aria-labelledby="experience-heading" className="py-16 md:py-24">
+      <Reveal>
+        <h2
+          id="experience-heading"
+          className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground"
+        >
+          Experience
+        </h2>
+      </Reveal>
+
+      <ul role="list" className="mt-12 space-y-12">
+        {experienceContent.items.map((entry, i) => (
+          <Reveal key={`${entry.company}-${entry.role}-${entry.period}`} as="li" delay={i * 120}>
+            <article className="group flex flex-col gap-3 rounded border border-transparent p-4 -mx-4 transition-all duration-base ease-out-soft hover:border-border hover:bg-muted/50">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {entry.period}
+                <span aria-hidden="true"> · </span>
+                {entry.location}
+              </p>
+              <h3 className="text-lg font-medium leading-tight text-foreground md:text-xl">
+                {entry.role}
+                <span className="text-muted-foreground">
+                  {" "}&mdash; {entry.company}
                 </span>
-              ))}
-            </h2>
-          </div>
-        </div>
-
-        <div className="md:col-span-8">
-          <ul role="list">
-            {experienceContent.items.map((entry, index) => (
-              <li
-                key={`${entry.company}-${entry.role}-${entry.period}`}
-                className="border-t border-border first:border-t-0"
+              </h3>
+              <p className="text-base leading-relaxed text-muted-foreground">
+                {entry.summary}
+              </p>
+              <ul
+                role="list"
+                className="flex flex-wrap gap-2 pt-1"
               >
-                <SlideIn from="up" index={index}>
-                  <article className="flex flex-col gap-5 py-10 md:py-12">
-                    <header className="space-y-2">
-                      <h3 className="text-2xl font-medium leading-tight md:text-3xl">
-                        {entry.role}
-                        <span className="text-muted-foreground">
-                          {" "}
-                          — {entry.company}
-                        </span>
-                      </h3>
-                      <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                        {entry.period}
-                        <span aria-hidden="true"> · </span>
-                        {entry.location}
-                        <span aria-hidden="true"> · </span>
-                        {entry.type}
-                      </p>
-                    </header>
+                {entry.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="bg-accent/10 px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-accent"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </Reveal>
+        ))}
+      </ul>
 
-                    <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
-                      {entry.summary}
-                    </p>
-
-                    <ul
-                      role="list"
-                      className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
-                    >
-                      {entry.tags.map((tag, tagIndex) => (
-                        <li key={tag} className="flex items-center gap-3">
-                          <span>{tag}</span>
-                          {tagIndex < entry.tags.length - 1 ? (
-                            <span aria-hidden="true">·</span>
-                          ) : null}
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                </SlideIn>
-              </li>
-            ))}
-          </ul>
+      {/* Resume link */}
+      <Reveal delay={experienceContent.items.length * 120}>
+        <div className="mt-12 flex items-center gap-4">
+          <Link
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors duration-hover ease-out-soft hover:text-accent"
+          >
+            View Full Resume
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform duration-hover ease-out-soft group-hover:translate-x-1"
+            >
+              &rarr;
+            </span>
+          </Link>
+          <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground/60">
+            (PDF coming soon)
+          </span>
         </div>
-      </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

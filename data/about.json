@@ -3,7 +3,8 @@
   "pullQuote": ["Quality is not", "a feature.", "It's the point."],
   "paragraphs": [
     "Computer Science graduate from the University of Ruhuna. I work across the full stack — web and games — and care about how systems are shaped more than how quickly they're assembled.",
-    "Industry experience at D B International Technology and CeylonX Corporation, building products with React, Next.js, Node.js, NestJS, Spring Boot, ASP.NET Core, Laravel, Cocos Creator, and Unity. Strong pattern recognition, teamwork, and a habit of adapting to whatever the problem actually needs."
+    "Industry experience at D B International Technology and CeylonX Corporation, building products with React, Next.js, Node.js, NestJS, Spring Boot, ASP.NET Core, Laravel, Cocos Creator, and Unity. Strong pattern recognition, teamwork, and a habit of adapting to whatever the problem actually needs.",
+    "Outside of work, I explore interactive graphics, real-time systems, and game mechanics. I'm drawn to problems at the intersection of performance and user experience — where the architecture needs to be as considered as the interface."
   ],
   "tags": [
     "TypeScript",

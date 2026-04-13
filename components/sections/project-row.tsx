@@ -49,30 +49,30 @@ export const ProjectRow = React.forwardRef<HTMLLIElement, ProjectRowProps>(
           "motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100",
         )}
       >
-        <div className="flex w-full items-center gap-8 py-10 md:gap-12 md:py-12">
+        <div className="flex w-full flex-col gap-4 py-8 md:flex-row md:items-center md:gap-12 md:py-12">
           <button
             type="button"
             onClick={() => onSelect(project.id)}
             aria-label={`Open ${project.title}`}
-            className="flex flex-1 items-center gap-8 text-left transition-colors duration-hover ease-out-soft md:gap-12"
+            className="flex flex-1 items-start gap-4 text-left transition-colors duration-hover ease-out-soft md:items-center md:gap-12"
           >
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-hover ease-out-soft group-hover:text-foreground">
+            <span className="shrink-0 pt-1 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground transition-colors duration-hover ease-out-soft group-hover:text-foreground md:pt-0">
               {project.number}
             </span>
 
-            <span className="flex-1 space-y-3">
-              <span className="flex items-baseline gap-4">
-                <span className="font-serif text-3xl font-medium text-muted-foreground transition-all duration-base ease-out-soft group-hover:translate-x-2 group-hover:text-foreground md:text-4xl">
+            <span className="flex-1 space-y-2 min-w-0 md:space-y-3">
+              <span className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
+                <span className="font-serif text-xl font-medium text-muted-foreground transition-all duration-base ease-out-soft group-hover:translate-x-2 group-hover:text-foreground sm:text-2xl md:text-3xl lg:text-4xl">
                   {project.title}
                 </span>
-                <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                <span className="shrink-0 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   {project.year}
                 </span>
               </span>
-              <span className="block max-w-xl text-base leading-relaxed text-muted-foreground">
+              <span className="block max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
                 {project.summary}
               </span>
-              <span className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground md:text-xs">
                 {project.tags.map((tag, tagIndex) => (
                   <span key={tag} className="flex items-center gap-3">
                     <span>{tag}</span>
@@ -86,8 +86,8 @@ export const ProjectRow = React.forwardRef<HTMLLIElement, ProjectRowProps>(
           </button>
 
           {project.links.length > 0 ? (
-            <div className="hidden shrink-0 flex-col items-end gap-2 md:flex">
-              <div className="flex items-center gap-4">
+            <div className="shrink-0 flex flex-col items-start gap-2 pl-8 md:items-end md:pl-0">
+              <div className="flex flex-wrap items-center gap-2 md:gap-4">
                 {project.links.map((link) =>
                   link.href ? (
                     <a
@@ -95,7 +95,7 @@ export const ProjectRow = React.forwardRef<HTMLLIElement, ProjectRowProps>(
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/link relative inline-flex items-center gap-1.5 border border-accent/40 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-accent transition-all duration-hover ease-out-soft hover:border-accent hover:bg-accent hover:text-background"
+                      className="group/link relative inline-flex items-center gap-1.5 border border-accent/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-accent transition-all duration-hover ease-out-soft hover:border-accent hover:bg-accent hover:text-background md:px-3 md:py-1.5 md:text-xs"
                     >
                       {link.label}
                     </a>
@@ -104,7 +104,7 @@ export const ProjectRow = React.forwardRef<HTMLLIElement, ProjectRowProps>(
                       key={link.label}
                       type="button"
                       onClick={(e) => handleUnavailableClick(link.label, e)}
-                      className="group/link relative inline-flex items-center gap-1.5 border border-border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground transition-all duration-hover ease-out-soft hover:border-foreground/30 hover:text-foreground"
+                      className="group/link relative inline-flex items-center gap-1.5 border border-border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-all duration-hover ease-out-soft hover:border-foreground/30 hover:text-foreground md:px-3 md:py-1.5 md:text-xs"
                     >
                       {link.label}
                     </button>
@@ -124,15 +124,7 @@ export const ProjectRow = React.forwardRef<HTMLLIElement, ProjectRowProps>(
                 {notice ?? "\u00A0"}
               </p>
             </div>
-          ) : (
-            <span
-              aria-label={project.thumbnail.alt}
-              className={cn(
-                "hidden h-24 w-32 shrink-0 opacity-70 transition-opacity duration-base ease-out-soft group-hover:opacity-100 md:block",
-                project.thumbnail.colorClass,
-              )}
-            />
-          )}
+          ) : null}
         </div>
       </li>
     );

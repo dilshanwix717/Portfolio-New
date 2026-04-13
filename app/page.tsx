@@ -1,30 +1,24 @@
-import { Navbar } from "@/components/layout/navbar";
+import { Sidebar } from "@/components/layout/sidebar";
 import { Footer } from "@/components/layout/footer";
-import { Hero } from "@/components/sections/hero";
-import { Ticker } from "@/components/sections/ticker";
 import { About } from "@/components/sections/about";
-import { Skills } from "@/components/sections/skills";
-import { Education } from "@/components/sections/education";
-import { Projects } from "@/components/sections/projects";
 import { Experience } from "@/components/sections/experience";
+import { FeaturedProjects } from "@/components/sections/featured-projects";
 import { Interests } from "@/components/sections/interests";
 import { Contact } from "@/components/sections/contact";
 
 export default function HomePage() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <Ticker />
-        <About />
-        <Projects />
-        <Skills />
-        <Education />
-        <Experience />
-        <Interests />
-        <Contact />
-      </main>
+      <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:flex lg:gap-16 lg:px-24 lg:py-0">
+        <Sidebar />
+        <main id="content" className="lg:w-full lg:py-24">
+          <About />
+          <Experience />
+          <FeaturedProjects />
+          <Interests />
+          <Contact />
+        </main>
+      </div>
       <Footer />
     </>
   );

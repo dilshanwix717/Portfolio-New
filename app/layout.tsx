@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { LoadingScreen } from "@/components/motion/loading-screen";
+import { CursorGlow } from "@/components/motion/cursor-glow";
 import "./globals.css";
 
 const fontSans = Inter({
@@ -33,6 +35,11 @@ export const metadata: Metadata = {
   keywords: [...siteConfig.keywords],
   authors: [{ name: siteConfig.author.name }],
   creator: siteConfig.author.name,
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -60,8 +67,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FAF6EE" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E0C08" },
+    { media: "(prefers-color-scheme: light)", color: "#ECE3D0" },
+    { media: "(prefers-color-scheme: dark)", color: "#231D14" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -82,7 +89,11 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body className="grain">
+        <LoadingScreen />
+        <CursorGlow />
+        {children}
+      </body>
     </html>
   );
 }

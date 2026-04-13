@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    /* Light theme — cream / ink */
-    --background: 40 56% 96%;        /* cream   #FAF6EE */
-    --foreground: 36 25% 8%;         /* ink     #1A1710 */
+    /* Light theme — warm cream / ink */
+    --background: 40 42% 91%;        /* warm cream  #ECE3D0 */
+    --foreground: 36 25% 8%;         /* ink         #1A1710 */
 
-    --muted: 43 50% 89%;             /* parchment #F0E8D4 */
-    --muted-foreground: 42 38% 26%;  /* brown   #5C4F2A */
+    --muted: 42 36% 84%;             /* parchment   #DDD2BA */
+    --muted-foreground: 42 38% 26%;  /* brown       #5C4F2A */
 
-    --card: 43 50% 89%;              /* parchment */
+    --card: 42 36% 84%;              /* parchment */
     --card-foreground: 36 25% 8%;    /* ink */
 
-    --border: 44 37% 66%;            /* sand    #C8B88A */
-    --input: 44 37% 66%;             /* sand */
+    --border: 44 30% 62%;            /* sand        #B5A882 */
+    --input: 44 30% 62%;             /* sand */
 
-    --accent: 43 80% 46%;            /* gold    #D4A017 */
+    --accent: 43 80% 46%;            /* gold        #D4A017 */
     --accent-foreground: 36 25% 8%;  /* ink */
 
-    --detail: 262 83% 58%;           /* violet  #7C3AED */
+    --detail: 262 83% 58%;           /* violet      #7C3AED */
 
     --ring: 43 80% 46%;              /* gold */
 
@@ -28,18 +28,18 @@
   }
 
   .dark {
-    /* Dark theme — charcoal / cream */
-    --background: 40 29% 5%;         /* charcoal        #0E0C08 */
-    --foreground: 40 56% 96%;        /* cream           #FAF6EE */
+    /* Dark theme — warm charcoal / cream */
+    --background: 36 22% 11%;        /* warm charcoal   #231D14 */
+    --foreground: 40 42% 91%;        /* soft cream      #ECE3D0 */
 
-    --muted: 30 20% 8%;              /* charcoal_card   #181410 */
-    --muted-foreground: 44 37% 66%;  /* sand            #C8B88A */
+    --muted: 34 20% 15%;             /* warm dark       #2E2720 */
+    --muted-foreground: 44 30% 62%;  /* sand            #B5A882 */
 
-    --card: 30 20% 8%;               /* charcoal_card */
-    --card-foreground: 40 56% 96%;   /* cream */
+    --card: 34 20% 15%;              /* warm dark */
+    --card-foreground: 40 42% 91%;   /* soft cream */
 
-    --border: 35 47% 12%;            /* charcoal_border #2A2210 */
-    --input: 35 47% 12%;             /* charcoal_border */
+    --border: 36 28% 20%;            /* warm border     #413520 */
+    --input: 36 28% 20%;             /* warm border */
 
     --accent: 43 80% 46%;            /* gold            #D4A017 */
     --accent-foreground: 36 25% 8%;  /* ink */
@@ -109,5 +109,24 @@
 
   ::selection {
     @apply bg-accent text-accent-foreground;
+  }
+}
+
+/* ── Grain texture overlay ──────────────────────────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::before {
+    display: none;
   }
 }
