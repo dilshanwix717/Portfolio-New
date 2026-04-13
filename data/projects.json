@@ -80,8 +80,7 @@
         {
           "label": "GitHub",
           "href": "https://github.com/dilshanwix717/API-Gateway-NestJS"
-        },
-        { "label": "Live Demo", "href": null }
+        }
       ],
       "repos": [
         {

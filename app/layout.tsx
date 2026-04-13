@@ -3,7 +3,6 @@ import { Inter, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { LoadingScreen } from "@/components/motion/loading-screen";
-import { CursorGlow } from "@/components/motion/cursor-glow";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -87,7 +86,6 @@ export default function RootLayout({
       <body className="grain">
         <ThemeProvider>
           <LoadingScreen />
-          <CursorGlow />
           {children}
         </ThemeProvider>
       </body>

@@ -8,7 +8,16 @@
       "location": "Colombo, LK",
       "type": "Full-time",
       "summary": "Full-stack web and game developer on web games and gaming platforms. Responsible for service design, real-time gameplay logic, and the front-end surfaces that ship with each title.",
-      "tags": ["NestJS", "Cocos Creator", "React", "NextJS", "PostgreSQL"]
+      "tags": [
+        "NestJS",
+        "Cocos Creator",
+        "React",
+        "NextJS",
+        "PostgreSQL",
+        "Docker",
+        "AWS",
+        "CI/CD"
+      ]
     },
     {
       "role": "Associate Software Engineer",
@@ -19,7 +28,7 @@
       "summary": "Developed, deployed, and maintained production products as a full-stack developer. Worked directly with clients and teammates on scope, shipping, and long-tail maintenance.",
       "tags": [
         "React",
-        "Node.js",
+        "Node JS",
         "MongoDB",
         "MySQL",
         "Firebase",
@@ -35,7 +44,7 @@
       "location": "Colombo, LK",
       "type": "Internship",
       "summary": "Built products as an intern full-stack developer — authored features end-to-end, from the database up to the interface.",
-      "tags": ["React", "Node.js", "MongoDB", "MySQL", "Firebase", "PayHere"]
+      "tags": ["ReactJS", "NodeJS", "MongoDB", "MySQL", "Firebase", "PayHere"]
     }
   ]
 }

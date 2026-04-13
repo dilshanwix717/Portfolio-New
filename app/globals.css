@@ -130,3 +130,18 @@
     display: none;
   }
 }
+
+/* ── Vara.js handwriting animation ─────────────────────────── */
+.vara-handwriting {
+  width: min(420px, 80vw);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vara-handwriting svg {
+  overflow: visible !important;
+  max-width: 100%;
+}
+
