@@ -164,12 +164,12 @@
   opacity: 0;
   animation:
     flourish-appear 0ms linear 3200ms forwards,
-    flourish-draw 1400ms cubic-bezier(0.22, 1, 0.36, 1) 3200ms forwards;
+    flourish-draw 1400ms cubic-bezier(0.22, 1, 0.36, 1) 4000ms forwards;
 }
 
 .loading-flourish-dot {
   opacity: 0;
-  animation: dot-fade-in 200ms ease-out 3800ms forwards;
+  animation: dot-fade-in 200ms ease-out 4400ms forwards;
 }
 
 @keyframes flourish-appear {

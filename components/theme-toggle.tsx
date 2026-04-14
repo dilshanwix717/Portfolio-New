@@ -36,9 +36,11 @@ export function ThemeToggle() {
         aria-hidden="true"
         className={cn(
           "absolute transition-all duration-300 ease-out-soft",
-          isDark
-            ? "rotate-0 scale-100 opacity-100"
-            : "-rotate-90 scale-0 opacity-0",
+          !mounted
+            ? "opacity-0"
+            : isDark
+              ? "rotate-0 scale-100 opacity-100"
+              : "-rotate-90 scale-0 opacity-0",
         )}
       >
         <circle cx="12" cy="12" r="4" />
@@ -66,9 +68,11 @@ export function ThemeToggle() {
         aria-hidden="true"
         className={cn(
           "absolute transition-all duration-300 ease-out-soft",
-          isDark
-            ? "rotate-90 scale-0 opacity-0"
-            : "rotate-0 scale-100 opacity-100",
+          !mounted
+            ? "opacity-0"
+            : isDark
+              ? "rotate-90 scale-0 opacity-0"
+              : "rotate-0 scale-100 opacity-100",
         )}
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
