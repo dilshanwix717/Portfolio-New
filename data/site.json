@@ -28,7 +28,10 @@
   },
   "socials": [
     { "label": "GitHub", "href": "https://github.com/dilshanwix717" },
-    { "label": "LinkedIn", "href": "https://linkedin.com" },
-    { "label": "Instagram", "href": "https://instagram.com" }
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/dilshan-wickramasinghe-a09986224"
+    },
+    { "label": "Instagram", "href": "https://www.instagram.com/dilshan_wix" }
   ]
 }

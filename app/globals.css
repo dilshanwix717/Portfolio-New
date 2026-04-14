@@ -169,7 +169,7 @@
 
 .loading-flourish-dot {
   opacity: 0;
-  animation: dot-fade-in 200ms ease-out 4400ms forwards;
+  animation: dot-fade-in 200ms ease-out 4600ms forwards;
 }
 
 @keyframes flourish-appear {
