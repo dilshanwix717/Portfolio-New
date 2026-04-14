@@ -145,3 +145,64 @@
   max-width: 100%;
 }
 
+/* ── "portfolio of" prefix ─────────────────────────────────── */
+.loading-prefix {
+  opacity: 0;
+  animation: prefix-fade-in 900ms ease-out 200ms forwards;
+}
+
+@keyframes prefix-fade-in {
+  to {
+    opacity: 0.7;
+  }
+}
+
+/* ── Curved flourish underline ─────────────────────────────── */
+.loading-flourish-line {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  opacity: 0;
+  animation:
+    flourish-appear 0ms linear 3200ms forwards,
+    flourish-draw 1400ms cubic-bezier(0.22, 1, 0.36, 1) 3200ms forwards;
+}
+
+.loading-flourish-dot {
+  opacity: 0;
+  animation: dot-fade-in 200ms ease-out 3800ms forwards;
+}
+
+@keyframes flourish-appear {
+  to {
+    opacity: 0.85;
+  }
+}
+
+@keyframes flourish-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dot-fade-in {
+  to {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-prefix {
+    animation: none;
+    opacity: 0.7;
+  }
+  .loading-flourish-line {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+  .loading-flourish-dot {
+    animation: none;
+    opacity: 0.85;
+  }
+}
+

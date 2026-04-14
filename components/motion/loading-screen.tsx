@@ -10,9 +10,11 @@ export function LoadingScreen() {
   );
 
   const handleAnimationEnd = React.useCallback(() => {
-    // Brief pause after handwriting finishes, then exit
-    const exitTimer = window.setTimeout(() => setPhase("exiting"), 400);
-    const doneTimer = window.setTimeout(() => setPhase("done"), 1100);
+    // Wait for the flourish + dot to finish, then exit
+    // Flourish starts 200ms after handwriting ends, draws for 1800ms,
+    // then dot fades in over 400ms — total ~2400ms after this callback
+    const exitTimer = window.setTimeout(() => setPhase("exiting"), 1800);
+    const doneTimer = window.setTimeout(() => setPhase("done"), 3000);
     return () => {
       window.clearTimeout(exitTimer);
       window.clearTimeout(doneTimer);
@@ -23,10 +25,10 @@ export function LoadingScreen() {
   React.useEffect(() => {
     const fallback = window.setTimeout(() => {
       setPhase((p) => (p === "writing" ? "exiting" : p));
-    }, 3500);
+    }, 6000);
     const fallbackDone = window.setTimeout(() => {
       setPhase("done");
-    }, 4200);
+    }, 6700);
     return () => {
       window.clearTimeout(fallback);
       window.clearTimeout(fallbackDone);
@@ -45,12 +47,18 @@ export function LoadingScreen() {
     >
       <div
         className={cn(
-          "relative z-10 flex flex-col items-center gap-4 transition-all duration-700 ease-out-soft",
+          "relative z-10 flex flex-col items-center gap-2 transition-all duration-700 ease-out-soft",
           phase === "writing"
             ? "translate-y-0 opacity-100"
             : "-translate-y-4 opacity-0",
         )}
       >
+        {/* "portfolio of" prefix — fades in first */}
+        <span className="loading-prefix font-serif italic text-sm tracking-[0.25em] text-muted-foreground lowercase">
+          portfolio of
+        </span>
+
+        {/* Handwritten signature */}
         <VaraText
           text="Dilshan Wickramasinghe"
           fontSize={36}
@@ -60,6 +68,31 @@ export function LoadingScreen() {
           onAnimationEnd={handleAnimationEnd}
           className="vara-handwriting"
         />
+
+        {/* Curved gold flourish with dot at the end */}
+        <svg
+          viewBox="0 0 300 24"
+          className="h-auto w-[min(60vw,300px)]"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            className="loading-flourish-line"
+            d="M 10 14 Q 60 2 150 12 T 280 14"
+            stroke="hsl(var(--accent))"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle
+            className="loading-flourish-dot"
+            cx="290"
+            cy="10"
+            r="2.2"
+            fill="hsl(var(--accent))"
+          />
+        </svg>
       </div>
     </div>
   );
