@@ -287,34 +287,72 @@
 
 /* ── dark/light mode toggle in navbar ── */
 #mode-toggle {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--fg2);
-  border: 1px solid var(--border2);
-  padding: 7px 14px;
   background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 7px;
-  transition: all 0.2s;
 }
-#mode-toggle:hover {
-  color: var(--accent);
-  border-color: var(--accent-border2);
-}
-#mode-toggle .mode-icon {
-  font-size: 13px;
-  line-height: 1;
-  transition: transform 0.35s;
-}
-#mode-toggle:hover .mode-icon {
-  transform: rotate(20deg);
+#mode-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 999px;
 }
 [data-theme="matrix"] #mode-toggle {
   display: none;
+}
+
+.mode-track {
+  position: relative;
+  display: block;
+  width: 54px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border2);
+  background: var(--bg2);
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s;
+}
+#mode-toggle:hover .mode-track {
+  border-color: var(--accent-border2);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+#mode-toggle[data-light="true"] .mode-track {
+  background: var(--bg1);
+}
+
+.mode-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s,
+              box-shadow 0.3s;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.35);
+  will-change: transform;
+}
+#mode-toggle[data-light="true"] .mode-knob {
+  transform: translateX(26px);
+}
+#mode-toggle[data-light="false"] .mode-knob {
+  transform: translateX(0);
+}
+#mode-toggle:hover .mode-knob {
+  box-shadow: 0 2px 10px var(--accent-glow);
+}
+.mode-knob svg {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s;
+}
+#mode-toggle:active .mode-knob svg {
+  transform: rotate(30deg) scale(0.85);
 }
 
 /* ═══════════════════════════════════════
