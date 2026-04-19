@@ -13,7 +13,7 @@
       "year": "2025",
       "category": "web",
       "summary": "Full-stack streaming platform with HLS playback, authentication, subscription gating, and Vimeo integration.",
-      "description": "Home cinema platform where users can purchase and stream movies. Features HLS video playback with adaptive bitrate, Firebase authentication, subscription-based content gating, and Vimeo integration. Includes a customer-facing React app, an admin panel for content management, and a Node.js backend with REST APIs.",
+      "description": "Sri Lankan subscription streaming platform built at CeylonX. React + TypeScript web client, a Node.js / Express API, and a separate React admin panel for catalog, payment, and subscription management. Video is delivered over HLS (m3u8) with Vimeo as the origin to scale to many concurrent viewers, Stripe handles recurring subscriptions, and Firebase Cloud Messaging powers push notifications. Deployed to AWS with GitHub-triggered CI/CD.",
       "tags": ["React", "Node.js", "Firebase", "Vimeo", "HLS", "Tailwind CSS"],
       "thumbnail": {
         "colorClass": "bg-parchment",
@@ -47,9 +47,9 @@
       "title": "Gaming Platform",
       "year": "2025",
       "category": "web",
-      "summary": "Modern gaming platform with a Next.js front-end and NestJS services.",
-      "description": "Gaming platform combining a Next.js front-end with a NestJS backend. Game catalog, session handling, and a modular service architecture designed for adding new titles without ceremony.",
-      "tags": ["Next.js", "NestJS", "TypeScript"],
+      "summary": "Micro-service gaming platform with an API gateway, account and lobby services, deployed on Kubernetes for concurrent players.",
+      "description": "Web-based gaming platform built at D B International Technology. An API gateway fronts separate account and lobby services that communicate over RabbitMQ, deployed on Kubernetes for concurrent players. Worked on auth proxying through the gateway, lobby routing across games / vendors / categories, and edge rate-limiting. NestJS services backed by PostgreSQL.",
+      "tags": ["NestJS", "RabbitMQ", "PostgreSQL", "Kubernetes", "TypeScript"],
       "thumbnail": { "colorClass": "bg-sand", "alt": "Gaming Platform" },
       "links": [
         { "label": "GitHub", "href": null },
@@ -62,8 +62,8 @@
       "title": "NestJS Microservice Architecture",
       "year": "2025",
       "category": "web",
-      "summary": "Production-grade microservice backend with API gateway, centralized auth, and user management.",
-      "description": "Microservice architecture for a video streaming platform. API gateway with circuit-breaker and exponential-backoff retry patterns, a centralized auth service with RS256 JWT tokens and role-based access control, and a user service managing profiles, subscriptions, and watch history. Services communicate over RabbitMQ with Redis caching and PostgreSQL persistence. Includes Docker Compose orchestration, OpenTelemetry tracing, and Prometheus metrics.",
+      "summary": "Self-initiated streaming-platform backbone — API gateway fronting independent Auth and User services with hardened security and full observability.",
+      "description": "Self-initiated streaming-platform backbone. API gateway fronts independent Auth and User services over RabbitMQ with idempotency keys and domain-event fan-out. Per-service circuit breakers, exponential-backoff retries, and Redis caching keep the gateway resilient. Auth is hardened with RS256 JWT, Argon2id password hashing, device fingerprinting with session-family token-reuse detection, per-endpoint rate limiting, and account lockout. Observability via Prometheus metrics and Jaeger distributed tracing.",
       "tags": [
         "NestJS",
         "TypeScript",
@@ -103,8 +103,8 @@
       "title": "Restaurant POS System",
       "year": "2024",
       "category": "web",
-      "summary": "Full-stack point-of-sale system for restaurant order and transaction management.",
-      "description": "Point-of-sale system built for restaurant operations. React frontend for order processing and staff workflows, a Bootstrap-based admin panel for back-office management, and a Node.js backend handling business logic, data models, and API routing.",
+      "summary": "Production POS running at Iluk Restaurant & Bar and Savour Street — order entry, menu management, and staff workflows.",
+      "description": "Production restaurant POS system running at Iluk Restaurant & Bar and Savour Street. Worked across the React frontend, the admin dashboard, and the Node.js backend APIs covering order entry, menu management, and authentication. Maintained features for live restaurant operations on top of the existing stack.",
       "tags": ["React", "Node.js", "Bootstrap", "Vite", "Tailwind CSS"],
       "thumbnail": {
         "colorClass": "bg-gold_muted",
@@ -174,8 +174,8 @@
       "title": "Three.js Interactive Globe",
       "year": "2024",
       "category": "web",
-      "summary": "Explorable 3D globe rendered entirely in the browser.",
-      "description": "Interactive 3D globe built with Three.js — explorable, animated, and fully rendered in the browser. Shader-driven atmosphere, point data overlays, and lightweight interaction model.",
+      "summary": "Three.js 3D globe built for the CeylonX corporate marketing site, with animated sections and a TinyMCE-powered admin.",
+      "description": "Built for the CeylonX corporate website and admin portal. The React marketing site features a Three.js 3D globe and animated sections, backed by a Node.js / Express and MongoDB API covering blog, portfolio, careers, testimonials, and project requests. A TinyMCE admin lets non-technical editors manage all content themselves.",
       "tags": ["Three.js", "WebGL", "TypeScript"],
       "thumbnail": {
         "colorClass": "bg-brown",
@@ -192,9 +192,9 @@
       "title": "Chicken Road Crash Game",
       "year": "2025",
       "category": "game",
-      "summary": "Crash-style arcade game built in Cocos Creator with a real-time NestJS backend.",
-      "description": "Crash-style arcade game built in Cocos Creator with a real-time NestJS backend for multiplayer logic, server-authoritative game state, and deterministic outcomes.",
-      "tags": ["Cocos Creator", "NestJS", "WebSocket", "TypeScript"],
+      "summary": "Real-time multiplier crash game — bet, then cash out before the live multiplier crashes. Cocos Creator client + NestJS backend.",
+      "description": "Real-time multiplier crash game where players bet and cash out before a live multiplier crashes. The Cocos Creator client uses a Finite State Machine architecture and calls backend endpoints via the built-in Fetch API for bet creation, crash-point checks, cash-outs, and auth. The NestJS backend broadcasts round state over Socket.IO with RabbitMQ for event fan-out, backed by PostgreSQL.",
+      "tags": ["Cocos Creator", "NestJS", "Socket.IO", "RabbitMQ", "PostgreSQL", "TypeScript"],
       "thumbnail": {
         "colorClass": "bg-gold_muted",
         "alt": "Chicken Road Crash Game"
@@ -231,8 +231,8 @@
       "title": "Lottery Scratch Game",
       "year": "2024",
       "category": "game",
-      "summary": "Interactive scratch card lottery with Cocos animations and server-side ticket generation.",
-      "description": "Interactive scratch card lottery game with tactile Cocos Creator animations and a NestJS ticket-generation service. Outcomes are built from a canonical weight table, validated server-side, and persisted to PostgreSQL.",
+      "summary": "Digital scratch ticket game — Cocos Creator client and a NestJS ticket-generation engine that produced ~130M tickets into PostgreSQL.",
+      "description": "Digital Scratch Card ticket game built across backend and game client. The ticket-generation engine validates against a weight table to produce exact winning and losing distributions that protect RTP, regenerating on validation failure and returning tickets to the player instantly. Extended into a batch pipeline that generated ~130M tickets into PostgreSQL. NestJS + TypeORM service, Cocos Creator client.",
       "tags": ["Cocos Creator", "NestJS", "PostgreSQL", "TypeScript"],
       "thumbnail": {
         "colorClass": "bg-charcoal_card",

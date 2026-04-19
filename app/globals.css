@@ -1214,14 +1214,137 @@ hr.div {
 .pc.hide {
   display: none;
 }
-.proj-more {
+.proj-more,
+.resume-cta {
   margin-top: 40px;
   display: flex;
   justify-content: flex-end;
 }
-.proj-more .plink {
+.proj-more .plink,
+.resume-cta .plink {
   font-size: 12px;
   letter-spacing: 0.2em;
+}
+
+/* Card body button — wraps the clickable region of a project card */
+.pc-body {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+.pc-body:focus-visible {
+  outline: 1px solid var(--accent-border2);
+  outline-offset: 6px;
+}
+
+/* Project detail modal */
+.pm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: pm-fade 0.18s ease-out;
+}
+@keyframes pm-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.pm-panel {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--accent-border);
+  padding: 36px 32px 32px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+  animation: pm-rise 0.22s ease-out;
+}
+@keyframes pm-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.pm-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: 0;
+  color: var(--fg3);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+.pm-close:hover {
+  color: var(--accent);
+}
+.pm-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--fg3);
+  text-transform: uppercase;
+}
+.pm-cat {
+  border: 1px solid var(--accent-dim2);
+  color: var(--accent);
+  padding: 2px 8px;
+}
+.pm-title {
+  font-family: var(--head2);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--fg);
+  margin: 0;
+}
+[data-theme="ember"] .pm-title {
+  font-family: var(--head);
+  font-weight: 400;
+  font-size: 26px;
+}
+.pm-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--fg2);
+  margin: 0;
+}
+.pm-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pm-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
 }
 
 /* ═══════════════════════════════════════

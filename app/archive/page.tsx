@@ -23,11 +23,11 @@ export default function ArchivePage() {
           <Link
             href="/"
             className="plink"
-            style={{ marginBottom: 40, display: "inline-flex" }}
+            style={{ marginBottom: 10, display: "inline-flex" }}
           >
             ← Back home
           </Link>
-          <div className="sec-label" style={{ marginTop: 40 }}>
+          <div className="sec-label" style={{ marginTop: 10 }}>
             ARCHIVE
           </div>
           <h1 className="exp-heading">
