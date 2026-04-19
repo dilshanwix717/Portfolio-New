@@ -11,11 +11,14 @@ export function ThemeToggle() {
       id="theme-toggle"
       type="button"
       onClick={toggle}
-      aria-label={isMatrix ? "Switch to Ember theme" : "Switch to Matrix theme"}
+      className={isMatrix ? undefined : "enter-matrix"}
+      aria-label={isMatrix ? "Switch to Ember theme" : "Enter the Matrix"}
     >
-      <span className="toggle-icon" aria-hidden="true">
-        {isMatrix ? "\u25C4" : "\u2B21"}
-      </span>
+      {isMatrix ? (
+        <span className="toggle-icon" aria-hidden="true">&#x25C4;</span>
+      ) : (
+        <span className="toggle-cursor" aria-hidden="true">&gt;_</span>
+      )}
       <span>{isMatrix ? "EXIT THE MATRIX" : "ENTER THE MATRIX"}</span>
     </button>
   );

@@ -32,6 +32,32 @@
   --mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
 }
 
+[data-theme="ember-light"] {
+  --bg: #fdf8ef;
+  --bg1: #f7f1e3;
+  --bg2: #f0e9d6;
+  --card: #faf4e8;
+  --card2: #f4edda;
+  --border: #e8dcc4;
+  --border2: #d9c9a8;
+  --fg: #2a1f0e;
+  --fg2: #6b5230;
+  --fg3: #a07840;
+  --accent: #b8860b;
+  --accent2: #d4a017;
+  --accent-dim: rgba(184, 134, 11, 0.08);
+  --accent-dim2: rgba(184, 134, 11, 0.16);
+  --accent-glow: rgba(184, 134, 11, 0.3);
+  --accent-border: rgba(184, 134, 11, 0.3);
+  --accent-border2: rgba(184, 134, 11, 0.5);
+  --nav-solid: rgba(253, 248, 239, 0.93);
+  --pt: 184, 134, 11;
+  --head: "DM Serif Display", Georgia, serif;
+  --head2: "Space Grotesk", system-ui, sans-serif;
+  --body: var(--font-sans), "Inter", system-ui, sans-serif;
+  --mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+}
+
 [data-theme="matrix"] {
   --bg: #080c14;
   --bg1: #0c1220;
@@ -257,6 +283,38 @@
 .nav-btn:hover {
   background: var(--accent);
   color: var(--bg);
+}
+
+/* ── dark/light mode toggle in navbar ── */
+#mode-toggle {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg2);
+  border: 1px solid var(--border2);
+  padding: 7px 14px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.2s;
+}
+#mode-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-border2);
+}
+#mode-toggle .mode-icon {
+  font-size: 13px;
+  line-height: 1;
+  transition: transform 0.35s;
+}
+#mode-toggle:hover .mode-icon {
+  transform: rotate(20deg);
+}
+[data-theme="matrix"] #mode-toggle {
+  display: none;
 }
 
 /* ═══════════════════════════════════════
@@ -1452,6 +1510,62 @@ hr.div {
   color: var(--bg);
   box-shadow: 0 8px 24px var(--accent-glow);
 }
+
+/* ── ENTER THE MATRIX button: A + B + D combined ── */
+#theme-toggle.enter-matrix {
+  border-color: #00e87a;
+  color: #00e87a;
+  background: rgba(0, 232, 122, 0.06);
+  animation: matrixBtnPulse 2.8s ease-in-out infinite,
+    matrixBtnFlicker 7s steps(1) 3s infinite;
+}
+#theme-toggle.enter-matrix:hover {
+  background: #00e87a;
+  color: #080c14;
+  animation: none;
+  box-shadow: 0 0 32px rgba(0, 232, 122, 0.55), 0 8px 24px rgba(0, 232, 122, 0.4);
+}
+
+/* A — pulsing green glow border */
+@keyframes matrixBtnPulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(0, 232, 122, 0.4),
+                0 0 14px rgba(0, 232, 122, 0.2),
+                inset 0 0 4px rgba(0, 232, 122, 0.05);
+    border-color: rgba(0, 232, 122, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(0, 232, 122, 0.7),
+                0 0 40px rgba(0, 232, 122, 0.35),
+                0 0 70px rgba(0, 232, 122, 0.12),
+                inset 0 0 8px rgba(0, 232, 122, 0.08);
+    border-color: #00e87a;
+  }
+}
+
+/* B — CRT scanline flicker every ~7s */
+@keyframes matrixBtnFlicker {
+  0%   { filter: brightness(1); }
+  1%   { filter: brightness(1.6) saturate(1.4); }
+  2%   { filter: brightness(0.7); }
+  3%   { filter: brightness(1.4) saturate(1.2); }
+  4%   { filter: brightness(1); }
+  100% { filter: brightness(1); }
+}
+
+/* D — blinking terminal cursor in the icon slot */
+.toggle-cursor {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1;
+  color: #00e87a;
+  animation: cursorBlink 1s step-end infinite;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 [data-theme="matrix"] #theme-toggle {
   background: rgba(0, 232, 122, 0.06);
   animation: btnPulse 3s ease-in-out infinite;

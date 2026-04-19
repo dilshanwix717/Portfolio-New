@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { navItems } from "@/data/nav";
+import { useTheme } from "@/components/theme-provider";
 
 function formatLabel(label: string): string {
   return label.charAt(0) + label.slice(1).toLowerCase();
@@ -9,6 +10,8 @@ function formatLabel(label: string): string {
 
 export function Navbar() {
   const navRef = React.useRef<HTMLElement | null>(null);
+  const { theme, toggleMode } = useTheme();
+  const isLight = theme === "ember-light";
 
   React.useEffect(() => {
     const el = navRef.current;
@@ -31,9 +34,17 @@ export function Navbar() {
           </li>
         ))}
       </ul>
-      <a href="#contact" className="nav-btn">
-        Hire Me
-      </a>
+      <button
+        id="mode-toggle"
+        type="button"
+        onClick={toggleMode}
+        aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
+      >
+        <span className="mode-icon" aria-hidden="true">
+          {isLight ? "☾" : "☀"}
+        </span>
+        <span>{isLight ? "Dark" : "Light"}</span>
+      </button>
     </nav>
   );
 }
