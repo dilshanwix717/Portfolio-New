@@ -56,14 +56,75 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const glitchTransition = React.useCallback((next: Theme) => {
+    const canvas = document.createElement("canvas");
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+    canvas.style.cssText = `position:fixed;inset:0;z-index:9999;pointer-events:none`;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d")!;
+
+    const toMatrix = next === "matrix";
+    const sliceColors = toMatrix
+      ? ["#00e87a", "#00ff41", "#c8ffd4", "#ffffff", "#003a1a"]
+      : ["#D4A017", "#ff9800", "#fff8e1", "#ffffff", "#3a2000"];
+
+    let frame = 0;
+    const totalFrames = 22;
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+      const intensity = frame < totalFrames / 2
+        ? frame / (totalFrames / 2)
+        : 1 - (frame - totalFrames / 2) / (totalFrames / 2);
+
+      const sliceCount = Math.floor(4 + intensity * 14);
+      for (let i = 0; i < sliceCount; i++) {
+        const y = Math.random() * H;
+        const h = Math.random() * (H / 6) + 4;
+        const offsetX = (Math.random() - 0.5) * 80 * intensity;
+        const color = sliceColors[Math.floor(Math.random() * sliceColors.length)]!;
+        const alpha = Math.random() * 0.55 * intensity + 0.05;
+        ctx.fillStyle = color;
+        ctx.globalAlpha = alpha;
+        ctx.fillRect(offsetX, y, W, h);
+      }
+
+      if (intensity > 0.3) {
+        ctx.globalAlpha = 0.08 * intensity;
+        ctx.fillStyle = toMatrix ? "#00e87a" : "#D4A017";
+        ctx.fillRect((Math.random() - 0.5) * 20, 0, W, H);
+        ctx.fillStyle = "#ff0044";
+        ctx.fillRect((Math.random() - 0.5) * 20 + 4, 0, W, H);
+      }
+
+      ctx.globalAlpha = 1;
+      frame++;
+
+      if (frame === Math.floor(totalFrames * 0.5)) {
+        setThemeState(next);
+      }
+
+      if (frame < totalFrames) {
+        requestAnimationFrame(draw);
+      } else {
+        canvas.remove();
+      }
+    };
+
+    requestAnimationFrame(draw);
+  }, []);
+
   // ember <-> matrix toggle (the fixed bottom-right button)
   const toggle = React.useCallback(() => {
     if (theme === "matrix") {
-      flashTransition("#D4A017", "ember");
+      glitchTransition("ember");
     } else {
-      flashTransition("#00E87A", "matrix");
+      glitchTransition("matrix");
     }
-  }, [theme, flashTransition]);
+  }, [theme, glitchTransition]);
 
   // ember <-> ember-light toggle (navbar button, hidden in matrix)
   const toggleMode = React.useCallback(() => {
