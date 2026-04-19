@@ -1,35 +1,28 @@
-import { SlideIn } from "@/components/motion/slide-in";
-import { SkillGroupCard } from "@/components/sections/skill-group-card";
 import { skillGroups } from "@/data/skills";
 
 export function Skills() {
   return (
-    <section
-      id="skills"
-      aria-labelledby="skills-heading"
-      className="container py-24 md:py-32"
-    >
-      <header className="mb-16 flex flex-col items-start justify-between gap-8 md:flex-row md:items-baseline">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-          03 / Skills
-        </p>
-        <h2 id="skills-heading" className="md:text-right">
-          Disciplines
-        </h2>
-      </header>
-
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-px bg-border md:grid-cols-2"
-      >
-        {skillGroups.map((group, index) => (
-          <li key={group.number} className="bg-background p-8 md:p-12">
-            <SlideIn from="up" index={index}>
-              <SkillGroupCard group={group} />
-            </SlideIn>
-          </li>
+    <section className="section" id="skills">
+      <span className="watermark" aria-hidden="true">
+        02
+      </span>
+      <div className="sec-label rv">02 — SKILLS</div>
+      <div className="skills-grid">
+        {skillGroups.map((group, i) => (
+          <div key={group.number} className={`sk-card rv d${Math.min(i + 1, 4)}`}>
+            <p className="sk-num">{group.number}</p>
+            <h3 className="sk-title">{group.title}</h3>
+            <p className="sk-desc">{group.description}</p>
+            <div className="sk-pills">
+              {group.items.map((item) => (
+                <span key={item} className="pill">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

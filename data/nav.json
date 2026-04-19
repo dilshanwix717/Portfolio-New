@@ -1,9 +1,9 @@
 {
   "items": [
     { "href": "#about", "label": "ABOUT" },
+    { "href": "#skills", "label": "SKILLS" },
     { "href": "#experience", "label": "EXPERIENCE" },
     { "href": "#projects", "label": "PROJECTS" },
-    { "href": "#interests", "label": "BEYOND CODE" },
     { "href": "#contact", "label": "CONTACT" }
   ]
 }

@@ -40,8 +40,9 @@ export function LoadingScreen() {
   return (
     <div
       aria-hidden="true"
+      style={{ background: "var(--bg)" }}
       className={cn(
-        "pointer-events-none fixed inset-0 z-[9999] flex items-center justify-center bg-background transition-opacity duration-700 ease-out-soft",
+        "pointer-events-none fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-700 ease-out-soft",
         phase === "exiting" && "opacity-0",
       )}
     >
@@ -54,7 +55,10 @@ export function LoadingScreen() {
         )}
       >
         {/* "portfolio of" prefix — fades in first */}
-        <span className="loading-prefix font-serif italic text-sm tracking-[0.25em] text-muted-foreground lowercase">
+        <span
+          className="loading-prefix font-serif italic text-sm tracking-[0.25em] lowercase"
+          style={{ color: "var(--fg2)" }}
+        >
           portfolio of
         </span>
 
@@ -63,7 +67,7 @@ export function LoadingScreen() {
           text="Dilshan Wickramasinghe"
           fontSize={36}
           strokeWidth={0.5}
-          color="hsl(var(--accent))"
+          color="var(--accent)"
           duration={3000}
           onAnimationEnd={handleAnimationEnd}
           className="vara-handwriting"
@@ -80,7 +84,7 @@ export function LoadingScreen() {
           <path
             className="loading-flourish-line"
             d="M 10 14 Q 60 2 150 12 T 280 14"
-            stroke="hsl(var(--accent))"
+            stroke="var(--accent)"
             strokeWidth="1.25"
             strokeLinecap="round"
             fill="none"
@@ -90,7 +94,7 @@ export function LoadingScreen() {
             cx="290"
             cy="10"
             r="2.2"
-            fill="hsl(var(--accent))"
+            fill="var(--accent)"
           />
         </svg>
       </div>

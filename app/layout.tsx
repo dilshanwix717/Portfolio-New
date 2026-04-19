@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
+import {
+  Inter,
+  JetBrains_Mono,
+  DM_Serif_Display,
+  Space_Grotesk,
+} from "next/font/google";
+import Script from "next/script";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { LoadingScreen } from "@/components/motion/loading-screen";
@@ -12,17 +18,23 @@ const fontSans = Inter({
   variable: "--font-sans",
 });
 
-const fontSerif = Cormorant_Garamond({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif",
-});
-
 const fontMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
+});
+
+const fontDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-display",
+});
+
+const fontGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -35,9 +47,7 @@ export const metadata: Metadata = {
   keywords: [...siteConfig.keywords],
   authors: [{ name: siteConfig.author.name }],
   creator: siteConfig.author.name,
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-  },
+  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }] },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -65,25 +75,36 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ECE3D0" },
-    { media: "(prefers-color-scheme: dark)", color: "#231D14" },
+    { media: "(prefers-color-scheme: light)", color: "#1C1610" },
+    { media: "(prefers-color-scheme: dark)", color: "#080C14" },
   ],
   width: "device-width",
   initialScale: 1,
 };
 
+const themeBootstrap = `(function(){try{var t=localStorage.getItem('dw-theme');if(t!=='matrix'&&t!=='ember')t='ember';document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='ember';}})();`;
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={cn(fontSans.variable, fontSerif.variable, fontMono.variable)}
+      data-theme="ember"
+      className={cn(
+        fontSans.variable,
+        fontMono.variable,
+        fontDisplay.variable,
+        fontGrotesk.variable,
+      )}
       suppressHydrationWarning
     >
-      <body className="grain">
+      <head>
+        <Script id="theme-bootstrap" strategy="beforeInteractive">
+          {themeBootstrap}
+        </Script>
+      </head>
+      <body>
         <ThemeProvider>
           <LoadingScreen />
           {children}

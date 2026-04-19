@@ -1,38 +1,78 @@
 import { aboutContent } from "@/data/about";
-import { Reveal } from "@/components/motion/reveal";
+
+const HIGHLIGHT_TERMS = ["D B International Technology", "CeylonX Corporation"];
+
+function highlightParagraph(paragraph: string): React.ReactNode {
+  let nodes: React.ReactNode[] = [paragraph];
+  for (const term of HIGHLIGHT_TERMS) {
+    const next: React.ReactNode[] = [];
+    for (const chunk of nodes) {
+      if (typeof chunk !== "string") {
+        next.push(chunk);
+        continue;
+      }
+      const parts = chunk.split(term);
+      parts.forEach((part, idx) => {
+        if (part) next.push(part);
+        if (idx < parts.length - 1) {
+          next.push(<strong key={`${term}-${idx}`}>{term}</strong>);
+        }
+      });
+    }
+    nodes = next;
+  }
+  return nodes;
+}
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="py-16 md:py-24">
-      <Reveal>
-        <h2
-          id="about-heading"
-          className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground"
-        >
-          About
-        </h2>
-      </Reveal>
-
-      <div className="mt-8 space-y-6">
-        {aboutContent.paragraphs.map((paragraph, i) => (
-          <Reveal key={paragraph.slice(0, 48)} delay={i * 100}>
-            <p className="text-base leading-relaxed text-muted-foreground">
-              {paragraph}
+    <section className="section" id="about">
+      <span className="watermark" aria-hidden="true">
+        01
+      </span>
+      <div className="sec-label rv">01 — ABOUT</div>
+      <div className="about-grid">
+        <div className="rv d1">
+          <p className="pullquote">
+            {aboutContent.pullQuote.map((line, i) => {
+              const isFirst = i === 0;
+              const isLast = i === aboutContent.pullQuote.length - 1;
+              return (
+                <span key={line}>
+                  {isLast ? (
+                    <em>
+                      {line}
+                      &rdquo;
+                    </em>
+                  ) : (
+                    <>
+                      {isFirst ? <>&ldquo;</> : null}
+                      {line}
+                    </>
+                  )}
+                  {!isLast ? <br /> : null}
+                </span>
+              );
+            })}
+          </p>
+        </div>
+        <div className="about-body">
+          {aboutContent.paragraphs.map((paragraph, i) => (
+            <p
+              key={paragraph.slice(0, 32)}
+              className={`about-p rv d${Math.min(i + 1, 4)}`}
+            >
+              {highlightParagraph(paragraph)}
             </p>
-          </Reveal>
-        ))}
-        <Reveal delay={aboutContent.paragraphs.length * 100}>
-          <ul className="flex flex-wrap gap-2 pt-4" role="list">
+          ))}
+          <div className="tag-row rv d4">
             {aboutContent.tags.map((tag) => (
-              <li
-                key={tag}
-                className="bg-accent/10 px-3 py-1 font-mono text-xs uppercase tracking-[0.15em] text-accent"
-              >
+              <span key={tag} className="chip">
                 {tag}
-              </li>
+              </span>
             ))}
-          </ul>
-        </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );

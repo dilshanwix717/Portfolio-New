@@ -2,7 +2,6 @@ import data from "./interests.json";
 
 export type InterestItem = {
   label: string;
-  icon: string;
   roles: readonly string[];
   tags: readonly string[];
 };
@@ -13,4 +12,4 @@ export type InterestsContent = {
   items: readonly InterestItem[];
 };
 
-export const interestsContent: InterestsContent = data as unknown as InterestsContent;
+export const interestsContent: InterestsContent = data as InterestsContent;
