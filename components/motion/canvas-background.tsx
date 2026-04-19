@@ -6,10 +6,15 @@ import { useTheme } from "@/components/theme-provider";
 const CHARS =
   "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン日月火水木金土0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}|=+;:#@!";
 const FS = 14;
+const TRAIL = 20;
 
 type Mode = "particles" | "matrix";
 
 type Particle = { x: number; y: number; vx: number; vy: number; r: number };
+
+type Col = { y: number; chars: string[]; speed: number; tick: number };
+
+const randChar = () => CHARS[Math.floor(Math.random() * CHARS.length)]!;
 
 export function CanvasBackground() {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -29,13 +34,13 @@ export function CanvasBackground() {
     let W = 0;
     let H = 0;
     let particles: Particle[] = [];
-    let drops: number[] = [];
+    let cols: Col[] = [];
     let rafId = 0;
 
     const resize = () => {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
-      if (mode === "matrix") initDrops();
+      if (mode === "matrix") initCols();
     };
 
     const initParticles = () => {
@@ -52,11 +57,14 @@ export function CanvasBackground() {
       }
     };
 
-    const initDrops = () => {
-      const cols = Math.max(1, Math.floor(W / FS));
-      drops = Array(cols)
-        .fill(0)
-        .map(() => Math.floor(Math.random() * (-H / FS)));
+    const initCols = () => {
+      const n = Math.max(1, Math.floor(W / FS));
+      cols = Array.from({ length: n }, () => ({
+        y: Math.floor(Math.random() * -40),
+        chars: [],
+        speed: 2 + Math.floor(Math.random() * 3),
+        tick: Math.floor(Math.random() * 4),
+      }));
     };
 
     const readAccentRGB = () =>
@@ -97,28 +105,50 @@ export function CanvasBackground() {
     };
 
     const drawMatrix = () => {
-      ctx.fillStyle = "rgba(8,12,20,0.055)";
+      ctx.fillStyle = "rgba(8,12,20,0.08)";
       ctx.fillRect(0, 0, W, H);
-      for (let i = 0; i < drops.length; i++) {
-        const cur = drops[i]!;
-        if (cur < 0) {
-          drops[i] = cur + 1;
+      ctx.font = `${FS}px 'JetBrains Mono', ui-monospace, monospace`;
+      ctx.textBaseline = "top";
+
+      for (let i = 0; i < cols.length; i++) {
+        const col = cols[i]!;
+        col.tick++;
+        if (col.tick < col.speed) continue;
+        col.tick = 0;
+
+        col.chars.unshift(randChar());
+        if (col.chars.length > TRAIL) col.chars.pop();
+
+        if (col.chars.length > 3 && Math.random() > 0.9) {
+          const idx =
+            2 + Math.floor(Math.random() * (col.chars.length - 2));
+          col.chars[idx] = randChar();
+        }
+
+        col.y++;
+        if (col.y * FS > H + TRAIL * FS && Math.random() > 0.975) {
+          col.y = Math.floor(Math.random() * -40);
+          col.chars = [];
           continue;
         }
-        const y = cur * FS;
+
         const x = i * FS;
-        const ch = CHARS[Math.floor(Math.random() * CHARS.length)]!;
-        ctx.fillStyle = "#C8FFDC";
-        ctx.font = `${FS}px 'JetBrains Mono', ui-monospace, monospace`;
-        ctx.fillText(ch, x, y);
-        if (Math.random() > 0.96) {
-          const ch2 = CHARS[Math.floor(Math.random() * CHARS.length)]!;
-          ctx.fillStyle = "#FFFFFF";
-          ctx.fillText(ch2, x, y);
+        for (let k = 0; k < col.chars.length; k++) {
+          const row = col.y - k;
+          if (row < 0) continue;
+          const yPx = row * FS;
+          if (yPx > H) continue;
+          const ch = col.chars[k]!;
+          if (k === 0) {
+            ctx.fillStyle = "#FFFFFF";
+          } else if (k === 1) {
+            ctx.fillStyle = "#B9FFCE";
+          } else {
+            const a = Math.max(0, 1 - k / TRAIL);
+            ctx.fillStyle = `rgba(60,220,120,${a * 0.9})`;
+          }
+          ctx.fillText(ch, x, yPx);
         }
-        if (y > H && Math.random() > 0.975)
-          drops[i] = Math.floor(Math.random() * -40);
-        else drops[i] = cur + 1;
       }
     };
 
@@ -130,7 +160,7 @@ export function CanvasBackground() {
 
     resize();
     if (mode === "particles") initParticles();
-    else initDrops();
+    else initCols();
 
     if (prefersReduced) {
       ctx.clearRect(0, 0, W, H);
