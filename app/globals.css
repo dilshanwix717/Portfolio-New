@@ -267,6 +267,10 @@
 .nav-links a:hover::after {
   width: 100%;
 }
+[data-theme="matrix"] .nav-links a {
+  font-weight: 700;
+  color: var(--accent);
+}
 .nav-btn {
   font-family: var(--mono);
   font-size: 10.5px;
@@ -524,6 +528,7 @@
 [data-theme="matrix"] .hero-sub {
   font-size: 13px;
   letter-spacing: 0.02em;
+  color: var(--fg);
 }
 
 .hero-ctas {
@@ -588,7 +593,7 @@
   display: none;
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--fg3);
+  color: var(--fg);
   margin-top: 32px;
   letter-spacing: 0.08em;
   opacity: 0;
