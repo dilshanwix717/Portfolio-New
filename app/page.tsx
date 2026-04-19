@@ -36,7 +36,7 @@ export default function HomePage() {
         <Experience />
 
         <hr className="div" />
-        <Projects />
+        <Projects limit={4} />
 
         <hr className="div" />
         <Education />

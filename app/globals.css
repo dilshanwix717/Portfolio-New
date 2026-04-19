@@ -1214,6 +1214,15 @@ hr.div {
 .pc.hide {
   display: none;
 }
+.proj-more {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+.proj-more .plink {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
 
 /* ═══════════════════════════════════════
    EDUCATION

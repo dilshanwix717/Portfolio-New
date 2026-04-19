@@ -1,12 +1,18 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import {
   projectCategories,
   projects,
   type Project,
   type ProjectFilter,
 } from "@/data/projects";
+
+type ProjectsProps = {
+  /** When set, renders only the first N projects, hides the filter bar, and shows a link to /archive. */
+  limit?: number;
+};
 
 const ExternalIcon = () => (
   <svg
@@ -30,8 +36,10 @@ function projectLinks(project: Project) {
   return project.links;
 }
 
-export function Projects() {
+export function Projects({ limit }: ProjectsProps = {}) {
   const [filter, setFilter] = React.useState<ProjectFilter>("all");
+  const isLimited = typeof limit === "number";
+  const visibleProjects = isLimited ? projects.slice(0, limit) : projects;
 
   return (
     <section className="section" id="projects">
@@ -40,23 +48,26 @@ export function Projects() {
       </span>
       <div className="sec-label rv">04 — PROJECTS</div>
 
-      <div className="filter-bar rv d1">
-        {projectCategories.map((cat) => (
-          <button
-            key={cat.value}
-            type="button"
-            className={`fb${filter === cat.value ? " act" : ""}`}
-            onClick={() => setFilter(cat.value)}
-          >
-            {cat.label.charAt(0) + cat.label.slice(1).toLowerCase()}
-          </button>
-        ))}
-      </div>
+      {isLimited ? null : (
+        <div className="filter-bar rv d1">
+          {projectCategories.map((cat) => (
+            <button
+              key={cat.value}
+              type="button"
+              className={`fb${filter === cat.value ? " act" : ""}`}
+              onClick={() => setFilter(cat.value)}
+            >
+              {cat.label.charAt(0) + cat.label.slice(1).toLowerCase()}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="proj-grid">
-        {projects.map((project, i) => {
+        {visibleProjects.map((project, i) => {
           const links = projectLinks(project);
-          const hidden = filter !== "all" && project.category !== filter;
+          const hidden =
+            !isLimited && filter !== "all" && project.category !== filter;
           return (
             <div
               key={project.id}
@@ -100,6 +111,15 @@ export function Projects() {
           );
         })}
       </div>
+
+      {isLimited ? (
+        <div className="proj-more rv">
+          <Link href="/archive" className="plink">
+            View full project archive
+            <ExternalIcon />
+          </Link>
+        </div>
+      ) : null}
     </section>
   );
 }
