@@ -5,9 +5,9 @@ import Link from "next/link";
 import {
   projectCategories,
   projects,
-  type Project,
   type ProjectFilter,
 } from "@/data/projects";
+import { ProjectModal, projectLinks } from "./project-modal";
 
 type ProjectsProps = {
   /** When set, renders only the first N projects, hides the filter bar, and shows a link to /archive. */
@@ -29,37 +29,15 @@ const ExternalIcon = () => (
   </svg>
 );
 
-function projectLinks(project: Project) {
-  if (project.repos && project.repos.length > 0) {
-    return project.repos;
-  }
-  return project.links;
-}
-
 export function Projects({ limit }: ProjectsProps = {}) {
   const [filter, setFilter] = React.useState<ProjectFilter>("all");
   const [activeId, setActiveId] = React.useState<string | null>(null);
   const isLimited = typeof limit === "number";
   const visibleProjects = isLimited ? projects.slice(0, limit) : projects;
 
-  const activeProject = React.useMemo(
-    () => (activeId ? projects.find((p) => p.id === activeId) ?? null : null),
-    [activeId],
-  );
-
-  React.useEffect(() => {
-    if (!activeProject) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveId(null);
-    };
-    document.addEventListener("keydown", onKey);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [activeProject]);
+  const activeProject = activeId
+    ? projects.find((p) => p.id === activeId) ?? null
+    : null;
 
   return (
     <section className="section" id="projects">
@@ -156,73 +134,5 @@ export function Projects({ limit }: ProjectsProps = {}) {
         />
       ) : null}
     </section>
-  );
-}
-
-function ProjectModal({
-  project,
-  onClose,
-}: {
-  project: Project;
-  onClose: () => void;
-}) {
-  const links = projectLinks(project);
-  const hasLinks = links.some((l) => l.href);
-
-  return (
-    <div
-      className="pm-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="pm-title"
-      onClick={onClose}
-    >
-      <div className="pm-panel" onClick={(e) => e.stopPropagation()}>
-        <button
-          type="button"
-          className="pm-close"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <div className="pm-top">
-          <span className="pm-num">{project.number}</span>
-          <span className="pm-year">{project.year}</span>
-          <span className="pm-cat">{project.category}</span>
-        </div>
-        <h3 id="pm-title" className="pm-title">
-          {project.title}
-        </h3>
-        <p className="pm-desc">{project.description}</p>
-        <div className="pm-tags">
-          {project.tags.map((tag) => (
-            <span key={tag} className="ptag">
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div className="pm-links">
-          {hasLinks ? (
-            links
-              .filter((l) => l.href)
-              .map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href as string}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="plink"
-                >
-                  {link.label}
-                  <ExternalIcon />
-                </a>
-              ))
-          ) : (
-            <span className="plocked">Private repo</span>
-          )}
-        </div>
-      </div>
-    </div>
   );
 }
