@@ -120,9 +120,9 @@ export function Projects({ limit }: ProjectsProps = {}) {
 
       {isLimited ? (
         <div className="proj-more rv">
-          <Link href="/archive" className="plink">
+          <Link href="/archive" className="plink archive-cta">
             View full project archive
-            <ExternalIcon />
+            <span className="archive-arrow" aria-hidden>→</span>
           </Link>
         </div>
       ) : null}
